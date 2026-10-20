@@ -1,0 +1,37 @@
+HOSPITALFLOW AI — SUBMISSION PACKAGE
+====================================
+
+1. TO SEE THE WORKING PROTOTYPE RIGHT NOW:
+   Double-click HospitalFlow-AI-Standalone.html
+   It works offline in a modern web browser (no install necessary).
+
+   Open the Visual Digital Twin tab (3D is the default). Drag to orbit,
+   scroll to zoom, click patient avatars to inspect, toggle 2D/3D,
+   and press +30 minutes or Emergency surge to see the model update.
+
+2. TO RUN THE MODULAR REPO VERSION:
+   Run in the project folder:
+       python3 -m http.server 8000
+   Open: http://localhost:8000
+
+3. TO VERIFY THE SIMULATOR:
+       node --test tests/*.test.js
+
+4. REQUIRED DELIVERABLES ALREADY INCLUDED:
+   - README.md (project brief, technical details, model, license links)
+   - docs/ARCHITECTURE.pdf
+   - docs/PRESENTATION.pptx and docs/PRESENTATION.pdf
+   - LICENSE
+   - Actual prototype code in src/
+   - Model weights and data in data/
+   - Demo guide and validation report in docs/
+
+5. YOU STILL MUST DO THESE BEFORE FINAL SUBMISSION:
+   - Fill your team, college/incubator details in README.md.
+   - Replace placeholders in presentation title / closing slides.
+   - Add actual public GitHub repo link to submission portal.
+   - Record 15–20 min demo, upload as Unlisted YouTube, put link in README.
+   - Test all repository links publicly while signed out.
+
+NOTE: This is an honest, SYNTHETIC educational digital twin proof of concept.
+It does not use real hospital data or make validated medical decisions.

@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09111e">
+  <meta name="description" content="HospitalFlow AI — a transparent, interactive synthetic emergency department digital twin with capacity simulations, scenario comparison and resource allocation search.">
+  <title>HospitalFlow AI | Emergency Department Digital Twin</title>
+  
+  <style>:root{color-scheme:dark;--bg:#090f1b;--side:#0c1423;--panel:#111c2c;--panel-raised:#142135;--stroke:#243348;--muted:#8193a9;--text:#f0f6ff;--mint:#5be0c6;--mint-dim:#163c39;--violet:#aa94fa;--blue:#75bcfa;--orange:#ffb773;--red:#fd778a;--font:Inter,"Avenir Next",Avenir,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.5 var(--font);color:var(--text)}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--mint);outline-offset:3px}button:disabled{opacity:.45;cursor:not-allowed}.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.icon.mini{width:16px;height:16px}.app-shell{min-height:100vh;display:grid;grid-template-columns:246px minmax(0,1fr)}.sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:30px 15px 20px 17px;background:var(--side);border-right:1px solid #1d2b3c}.brand{display:flex;align-items:center;gap:10px;padding:4px 9px 37px}.brand-symbol{width:37px;height:37px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(140deg,#134b49,#173253);box-shadow:0 0 22px #36d9c514;color:var(--mint)}.brand-symbol .icon{width:25px;height:25px;stroke-width:2}.brand strong{font-weight:800;letter-spacing:1.2px;font-size:14px;display:block;white-space:nowrap}.brand-accent{color:var(--mint)}.brand small{font-size:9px;letter-spacing:2px;color:#8195a8;display:block;margin-top:2px}.side-label{padding:0 13px 12px;font-size:10px;font-weight:750;letter-spacing:1.8px;color:#667b96}.nav-list{display:grid;gap:5px}.nav-btn{background:none;color:#98aac1;border:1px solid transparent;border-radius:9px;text-align:left;display:flex;align-items:center;gap:12px;min-height:46px;padding:0 12px;font-weight:600;font-size:12.5px;transition:.2s ease}.nav-btn:hover{background:#162338;color:#f8fdff}.nav-btn.active{background:#1b303e;border-color:#2b4b53;color:#cbfff2}.nav-btn.active .icon{color:var(--mint)}.nav-btn .icon{width:18px;height:18px}.nav-pill{font-size:8px;letter-spacing:.5px;font-weight:800;background:#1a594f;color:#88f3d4;padding:2px 5px;border-radius:4px;margin-left:auto}.sidebar-bottom{margin-top:auto}.system-card{background:#121f30;border:1px solid #25344a;border-radius:11px;padding:14px 13px}.system-row{display:flex;align-items:center;gap:8px;color:#86d5c1;font-size:10px;letter-spacing:.9px;font-weight:800}.system-row.light{letter-spacing:0;font-weight:500;font-size:11px;color:#93a5bc}.system-metadata{font-size:11px;margin-top:9px;color:#8298ac}.system-line{height:1px;background:#263349;margin:13px 0}.status-dot{width:7px;height:7px;background:var(--mint);box-shadow:0 0 0 4px #49e2c520;border-radius:50%;display:inline-block;flex-shrink:0}.side-foot{display:flex;justify-content:space-between;padding:19px 4px 0;color:#657990;font-size:9px;letter-spacing:1.2px;font-weight:700}.side-foot span{color:#b3bfce}.main{min-width:0}.topbar{height:69px;border-bottom:1px solid #1d2b3e;display:flex;align-items:center;justify-content:space-between;padding:0 38px;background:#0c1422}.crumbs{font-size:10px;letter-spacing:1.6px;color:#6e829b;font-weight:700}.crumbs span:first-child{margin:0 9px;color:#455871}.crumbs span:last-child{color:#a7b7cb}.topbar-right{display:flex;align-items:center;gap:19px}.time-chip,.live-chip{font-size:10px;display:flex;gap:8px;align-items:center;color:#a6b6ca;font-weight:700;letter-spacing:.6px}.live-chip{color:var(--mint)}.avatar{border:1px solid #405171;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#253955;color:#d7e5f5;font-weight:700;font-size:10px}.page-container{max-width:1580px;padding:30px 34px 45px;margin:0 auto}.tab{display:none}.tab.active{display:block}.heading-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px}.eyebrow{color:var(--mint);font-size:10px;font-weight:800;letter-spacing:2px;display:flex;align-items:center;gap:9px}.eyebrow-line{width:18px;height:2px;background:var(--mint)}h1{font-size:clamp(25px,2.4vw,35px);letter-spacing:-1.5px;font-weight:750;line-height:1.3;margin:10px 0 6px}h1 span{color:var(--mint)}.lede{color:#90a2b8;font-size:12.5px;margin:0;max-width:730px;line-height:1.8}.btn{border:1px solid #304158;border-radius:8px;height:35px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:11px;font-weight:700;padding:0 14px;white-space:nowrap;transition:transform .16s,background .16s}.btn:active{transform:scale(.97)}.btn-ghost{background:#162238;color:#c8d7e9}.btn-ghost:hover{background:#1e304b}.btn-primary{background:var(--mint);color:#07312b;border-color:#74f1db}.btn-primary:hover{background:#8cefdc}.kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:19px}.kpi-card{background:linear-gradient(155deg,#142238,#101a2a);border:1px solid #243449;border-radius:12px;padding:17px 18px 16px;min-width:0}.kpi-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.kpi-head>span:first-child{font-size:11.5px;color:#98abc0;font-weight:600}.kpi-icon{height:32px;width:32px;display:grid;place-items:center;border-radius:8px}.kpi-icon .icon{height:16px;width:16px}.kpi-icon.mint{color:var(--mint);background:#1b403d}.kpi-icon.blue{color:var(--blue);background:#203650}.kpi-icon.orange{color:var(--orange);background:#483626}.kpi-icon.violet{color:var(--violet);background:#342a54}.kpi-value{font-size:31px;font-weight:760;letter-spacing:-1.2px;line-height:1.25;margin:14px 0 10px;font-variant-numeric:tabular-nums}.kpi-value em{font-size:14px;letter-spacing:0;color:#8094ae;font-style:normal;font-weight:600;margin-left:5px}.kpi-foot{color:#849ab1;font-size:10px;display:flex;align-items:center;gap:7px;white-space:nowrap}.dot{height:7px;width:7px;border-radius:50%;display:inline-block;flex-shrink:0}.mint-bg{background:var(--mint)}.orange-bg{background:var(--orange)}.red-bg{background:var(--red)}.violet-bg{background:var(--violet)}.mini-progress{width:41px;height:4px;background:#263950;border-radius:4px;overflow:hidden}.mini-progress span{display:block;height:100%;background:var(--violet);transition:width .3s}.content-grid{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px}.center-stack,.right-stack{display:grid;gap:18px;align-content:start;min-width:0}.panel{background:var(--panel);border:1px solid var(--stroke);border-radius:12px;min-width:0;overflow:hidden}.panel-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:19px 22px 13px}.panel-header h2{margin:3px 0 0;font-size:15px;letter-spacing:-.3px;font-weight:700}.panel-kicker{font-size:9px;letter-spacing:1.6px;color:#7a8fa7;font-weight:800}.panel-header.compact{padding:19px 18px 16px}.header-right{display:flex;gap:14px}.map-legend,.chart-bottom,.compare-legend{font-size:10px;color:#8fa5bd;display:flex;align-items:center;gap:6px}.hospital-map{min-height:240px;padding:5px 16px 0}.hospital-map svg{width:100%;height:auto;max-height:310px;display:block}.map-footer{border-top:1px solid #233249;margin:2px 22px 0;padding:12px 0;display:flex;align-items:center;justify-content:space-between;color:#8399b0;font-size:10px}.map-footer span{display:flex;gap:8px;align-items:center}.map-footer strong{font-size:9px;letter-spacing:1px;color:var(--mint)}.map-footer .icon{color:var(--mint)}.map-zone-label{font-weight:750;letter-spacing:1px;font-size:11px;fill:#dbe9fb}.map-zone-caption{font-size:8.7px;fill:#91a8c2}.map-zone-value{font-size:26px;font-weight:800;fill:#f2f7ff;letter-spacing:-1px}.map-zone-card{fill:#15253a;stroke:#31455f;stroke-width:1}.map-zone-line{fill:none;stroke:#3b5974;stroke-width:2;stroke-dasharray:5 6}.map-zone-track{fill:none;stroke:var(--mint);stroke-width:2;stroke-dasharray:6 15;opacity:.6;animation:track 2s linear infinite}@keyframes track{to{stroke-dashoffset:-42}}.map-zone-dot{animation:glow 2.4s ease-in-out infinite}@keyframes glow{50%{opacity:.35}}.chart-wrap{min-height:230px;padding:5px 16px 0}.chart-wrap svg{width:100%;height:auto;display:block}.chart-bottom{padding:0 24px 18px;justify-content:space-between}.chart-bottom span,.compare-legend span{display:inline-flex;align-items:center;gap:7px}.legend-line{width:18px;height:3px;border-radius:3px;display:inline-block}.segmented,.speed-switch{display:flex;background:#0e1928;padding:3px;border:1px solid #28384a;border-radius:7px;gap:3px}.segmented button,.speed-switch button{background:none;border:none;color:#8296ad;padding:5px 10px;border-radius:5px;font-size:10px;font-weight:700}.segmented button.selected,.speed-switch button.selected{background:#294257;color:#dcfffa}.patient-table{border-collapse:collapse;width:100%;font-size:11px;text-align:left;white-space:nowrap}.patient-table th{font-size:9px;text-transform:uppercase;letter-spacing:1px;font-weight:750;color:#7590a9;background:#152338;padding:12px 23px}.patient-table td{border-top:1px solid #213047;color:#c8d5e8;padding:11px 23px}.patient-table tbody tr:hover{background:#16263a}.patient-id{font-weight:760;color:#e9f7ff}.acuity{padding:3px 8px;border-radius:4px;font-size:9px;font-weight:750;display:inline-block;letter-spacing:.3px}.acuity.urgent{color:#ffc0c5;background:#452638}.acuity.medium{color:#fbd3a1;background:#3c3227}.acuity.low{color:#acdace;background:#244039}.stage-badge{font-size:10px;color:#a4c4d7}.badge{font-size:9px;letter-spacing:.8px;font-weight:800;border-radius:5px;padding:5px 7px}.badge-neutral{color:#a9b9cb;background:#26364a}.badge-mint{color:#91efd9;background:#1a433f}.controls-icon{height:30px;width:30px;display:grid;place-items:center;background:#21344a;color:var(--mint);border-radius:7px}.controls-icon .icon{height:17px;width:17px}.config-body{padding:0 18px 18px}.control-head{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:12px;font-size:9px;letter-spacing:1.3px;font-weight:800;color:#8ba1b9}.mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#0b1625;padding:4px;border:1px solid #26374b;border-radius:7px;margin-bottom:24px}.mode-switch button{border:none;background:transparent;border-radius:5px;font-size:10px;color:#8da1b8;font-weight:700;padding:9px 7px}.mode-switch button.active{color:#e2fdf6;background:#254d4c}.slider-field{margin-bottom:20px}.slider-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.slider-label label{color:#c9d6e8;font-size:11px;font-weight:600}.slider-label output{color:var(--mint);font-weight:850;font-size:12px}.slider-field input{accent-color:var(--mint);width:100%;height:5px;cursor:pointer;margin:3px 0}.slider-ends{display:flex;justify-content:space-between;color:#657d96;font-size:9px;margin-top:2px}.control-divider{height:1px;background:#27364a;margin:23px 0}.engine-time{font-size:9px;color:#7092a8;letter-spacing:0}.playback{display:grid;grid-template-columns:1fr 1fr;gap:9px}.playback .btn{height:38px}.speed-row{display:flex;align-items:center;justify-content:space-between;color:#9aadc0;font-size:10px;margin-top:16px}.speed-switch button{padding:5px 8px}.control-note{background:#162a39;border-left:2px solid var(--mint);color:#849fb4;font-size:10px;line-height:1.65;display:flex;align-items:flex-start;gap:8px;padding:10px;margin:19px 0 0}.control-note .icon{margin-top:1px;flex-shrink:0;color:var(--mint)}.event-feed{margin:0 18px;max-height:170px;overflow:auto}.event-item{display:flex;gap:10px;padding:10px 0;border-top:1px solid #253349}.event-item:first-child{border-top:0}.event-icon{height:22px;width:22px;display:grid;place-items:center;background:#1b3a37;color:var(--mint);border-radius:50%;font-weight:800;font-size:10px;flex-shrink:0}.event-icon.critical{background:#483040;color:#ff9aab}.event-item p{margin:0;color:#bbcade;font-size:10px;line-height:1.5}.event-item small{display:block;color:#6c849c;font-size:9px;margin-top:3px}.pulsing{width:8px;height:8px;background:var(--mint);border-radius:50%;box-shadow:0 0 0 5px #5be0c618;animation:glow 1.3s ease-in-out infinite}.open-lab{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:14px;padding:13px 18px;border:0;border-top:1px solid #26364a;background:#15243a;color:#8ee8d2;font-size:10px;font-weight:750}.insight-card{padding:23px 21px;border-radius:12px;background:radial-gradient(circle at 95% 0,#2c375c 0,transparent 60%),linear-gradient(145deg,#202e4a,#183a43);border:1px solid #345365;position:relative}.insight-graphic{height:34px;width:34px;border-radius:10px;background:#3b5265;display:grid;place-items:center;color:#98f1dd;margin-bottom:14px}.insight-kicker{font-size:9px;letter-spacing:1.3px;font-weight:750;color:#8aefcd}.insight-card h3{font-size:17px;letter-spacing:-.6px;line-height:1.35;margin:9px 0}.insight-card p{font-size:11px;color:#adc3d7;line-height:1.7;margin:8px 0 18px}.insight-card button{border:0;background:none;padding:0;color:#8ff5dd;font-size:11px;font-weight:750;display:flex;align-items:center;gap:9px}.main-footer{display:flex;justify-content:space-between;gap:10px;padding:20px 38px;border-top:1px solid #1d2b3e;color:#5d738c;font-size:9px;letter-spacing:1.3px;font-weight:700}.pill-title{font-size:9px;white-space:nowrap;letter-spacing:1px;font-weight:800;padding:9px 12px;color:#9deddc;border:1px solid #30594f;background:#173730;border-radius:7px}.scenario-hero{display:flex;align-items:center;justify-content:space-between;gap:28px;border:1px solid #36555c;border-radius:13px;padding:25px;background:linear-gradient(110deg,#153e41,#17223c 80%);margin-bottom:19px}.scenario-hero h2{font-size:21px;letter-spacing:-.5px;margin:6px 0}.scenario-hero p{font-size:11.5px;color:#acc7d1;max-width:790px;line-height:1.7;margin:0}.run-btn{height:43px;padding:0 19px}.compare-grid{display:grid;grid-template-columns:1fr 1fr .85fr;gap:18px;margin-bottom:19px}.compare-card{padding:23px}.compare-card.optim{border-color:#36665f;background:linear-gradient(150deg,#173437,#11262f 65%)}.compare-head{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:1px;color:#94a8bc}.compare-head .badge{margin-left:auto;white-space:nowrap}.compare-mark{height:9px;width:9px;border-radius:3px}.compare-mark.base{background:var(--violet)}.compare-mark.optim{background:var(--mint)}.compare-card h2{font-size:36px;letter-spacing:-1.5px;margin:24px 0 18px}.compare-card h2 small{font-size:12px;font-weight:500;letter-spacing:0;color:#8da7bb}.compare-detail{border-top:1px solid #26374b;display:flex;justify-content:space-between;gap:8px;align-items:center;padding:11px 0;color:#92a9c0;font-size:11px}.compare-detail strong{color:#e7f4ff;font-size:11px}.compare-summary{border:1px solid #375354;background:radial-gradient(circle at 100% 0,#23484d,transparent 65%),#173036;border-radius:12px;padding:25px;display:flex;flex-direction:column}.large-gain{font-size:43px;font-weight:800;color:var(--mint);letter-spacing:-2px;margin:15px 0 4px}.compare-summary strong{font-size:12px}.compare-summary p{color:#a0c0c6;font-size:11px;line-height:1.8}.mini-disclaimer{font-size:9px;color:#78a29b;margin-top:auto;padding-top:10px}.comparison-chart-panel{margin-bottom:19px}.comparison-chart-panel .chart-wrap{padding-bottom:15px}.compare-legend{gap:18px}.candidate-panel{margin-bottom:12px}.candidate-panel .patient-table td{padding:15px 23px}.candidate-best{background:#12382f}.panel-note{margin:0;padding:12px 22px 16px;font-size:10px;color:#7e95ac;border-top:1px solid #25354b}.model-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px}.model-stat{padding:22px}.model-stat>span{color:#8c9fb5;font-size:10px;letter-spacing:1.2px;font-weight:760}.model-stat div{margin:14px 0 8px;display:flex;align-items:baseline;gap:9px}.model-stat strong{font-size:34px;line-height:1.2;letter-spacing:-1px}.model-stat em{font-style:normal;font-size:11px;color:#8da4b9}.model-stat small{color:#68839c}.forecast-chart-panel{margin-bottom:18px}.chart-wrap.tall{min-height:290px}.forecast-note{border-top:1px solid #25354b;padding:14px 22px;color:#8da4b9;font-size:11px;display:flex;gap:10px}.forecast-note .icon{color:var(--mint);flex-shrink:0}.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.method-card{padding:22px}.method-num{color:#4b8e8b;font-size:26px;font-weight:800;letter-spacing:-1px}.method-card h3{font-size:16px;margin:8px 0}.method-card p{font-size:11px;color:#93a8bc;line-height:1.8}.about-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px}.about-feature{padding:24px}.about-icon{height:42px;width:42px;color:var(--mint);background:#1b3d3e;border-radius:10px;display:grid;place-items:center}.about-feature h2{font-size:17px;margin:17px 0 8px}.about-feature p{font-size:12px;color:#97abc1;line-height:1.9;margin:0}.constraint-panel{margin-bottom:18px}.constraints{display:grid;gap:13px;padding:7px 24px 23px}.constraints>div{display:flex;align-items:flex-start;gap:12px;color:#a3b6c9;font-size:12px}.constraints .icon{width:17px;height:17px;color:var(--mint);flex-shrink:0}.footer-callout{padding:25px 27px;border:1px solid #2d5256;background:linear-gradient(105deg,#153935,#162b46);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:20px}.footer-callout h2{font-size:20px;margin:8px 0}.footer-callout p{font-size:11px;color:#adc7cf;margin:0}.toast{position:fixed;bottom:24px;right:25px;z-index:60;padding:12px 18px;background:#183e39;color:#bdffed;border:1px solid #528b7a;border-radius:8px;font-size:12px;box-shadow:0 18px 50px #0009;pointer-events:none;opacity:0;transform:translateY(20px);transition:.3s}.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:1320px){.app-shell{grid-template-columns:211px minmax(0,1fr)}.sidebar{padding-left:10px;padding-right:10px}.brand{padding-left:4px}.brand strong{font-size:12px}.brand small{font-size:8px}.page-container{padding:26px 25px}.content-grid{grid-template-columns:minmax(0,1fr) 280px}.kpi-card{padding:14px}.kpi-value{font-size:27px}.kpi-head>span:first-child{font-size:10px}.compare-head .badge{display:none}}
+@media(max-width:1050px){.content-grid{grid-template-columns:1fr}.right-stack{grid-template-columns:1fr 1fr}.insight-card{grid-column:1/-1}.controls-panel{grid-row:span 2}.compare-grid{grid-template-columns:1fr 1fr}.compare-summary{grid-column:1/-1}.model-stat-grid{gap:10px}}
+@media(max-width:820px){.app-shell{grid-template-columns:1fr}.sidebar{position:static;height:auto;padding:12px 16px;display:block}.brand{padding:0 0 10px}.side-label,.sidebar-bottom{display:none}.nav-list{display:flex;overflow:auto}.nav-btn{min-width:140px;white-space:nowrap;min-height:38px}.topbar{padding:0 19px;height:52px}.crumbs{font-size:9px}.page-container{padding:20px 15px}.main-footer{padding:16px}.heading-row{align-items:flex-start}.export-btn,.pill-title{display:none}.kpi-grid{grid-template-columns:1fr 1fr;gap:10px}.right-stack{grid-template-columns:1fr}.controls-panel{grid-row:auto}.method-grid,.model-stat-grid{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}.scenario-hero{flex-direction:column;align-items:flex-start}.compare-grid{grid-template-columns:1fr}.compare-summary{grid-column:auto}.main-footer{flex-direction:column}}
+@media(max-width:480px){.kpi-card{padding:13px}.kpi-head>span:first-child{font-size:10px}.kpi-value{font-size:25px}.topbar .time-chip{display:none}.panel-header{padding:16px}.map-legend{display:none}.hospital-map{padding:0 5px;min-height:160px}.patient-table th,.patient-table td{padding:11px 10px}.table-scroll{overflow-x:auto}.chart-wrap{padding:0 4px}.compare-legend{display:none}}
+/* Keep the horizontal tab strip scrollable without widening the page on phones. */
+@media (max-width:820px){.app-shell{grid-template-columns:minmax(0,1fr)}.sidebar{min-width:0;max-width:100vw;overflow:hidden}.nav-list{max-width:100%;min-width:0;overflow-x:auto}.main{min-width:0}}
+/* DIGITAL TWIN THEATER — browser-native, spatial patient visualization. */
+.twin-hero{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-bottom:23px}.twin-hero h1{font-size:clamp(28px,2.8vw,45px);letter-spacing:-1.8px}.twin-hero .lede{max-width:755px}.twin-hero-tag{display:flex;align-items:center;gap:9px;background:#15382e;border:1px solid #386955;padding:14px 17px;border-radius:10px;color:#a5f9d9;font-size:10px;white-space:nowrap;font-weight:800;letter-spacing:.3px}.twin-hero-tag small{display:block;font-size:8px;color:#729f91;font-weight:600}.twin-kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:17px}.twin-metric{background:linear-gradient(145deg,#172b3e,#122032);padding:17px 19px;border:1px solid #2b4359;border-radius:11px;display:flex;flex-direction:column}.twin-metric:nth-child(2){background:linear-gradient(145deg,#302a3c,#191f30)}.twin-metric:nth-child(3){background:linear-gradient(145deg,#322639,#171f30)}.twin-metric>span{font-size:10px;letter-spacing:1.2px;color:#99aabf;font-weight:750}.twin-metric strong{font-size:35px;letter-spacing:-1px;line-height:1.45;color:#f0fcff}.twin-metric small{font-size:10px;color:#8098ae}.visual-studio{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:15px;align-items:stretch}.visual-main,.visual-inspector{border:1px solid #2d455d;background:#101e30;border-radius:13px;overflow:hidden;min-width:0}.visual-main{display:flex;flex-direction:column}.visual-toolbar{padding:15px 17px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#14263a;border-bottom:1px solid #2c4860}.visual-toolbar-heading{display:flex;align-items:center;gap:10px}.visual-live-dot{width:10px;height:10px;background:#54edd0;border-radius:50%;box-shadow:0 0 0 5px #49deb21f,0 0 17px #58ddba88;animation:glow 1.7s infinite}.visual-toolbar-heading strong{font-size:11px;letter-spacing:1.3px;color:#eefaff}.visual-toolbar-heading small{display:block;font-size:10px;color:#83a1b9;margin-top:3px}.visual-toolbar-right{display:flex;align-items:center;gap:13px}.visual-sim-clock{font-size:11px;letter-spacing:1px;color:#87e6d0;font-weight:750;white-space:nowrap}.visual-icon-btn{background:#24384f;border:1px solid #3c5972;color:#c5e6f2;border-radius:7px;width:32px;height:30px;font-size:19px;line-height:1}.visual-scene{position:relative;background:radial-gradient(ellipse at center,#183247 0,#091727 78%);min-height:375px;display:grid;align-items:center;overflow:hidden}.facility-scene{width:100%}.facility-scene svg{width:100%;max-height:630px;height:auto;display:block}.visual-scene:fullscreen{height:100vh;background:#071323;padding:4vw}.visual-scene:fullscreen svg{max-height:90vh}.visual-scene-overlay{pointer-events:none;position:absolute;bottom:12px;left:14px;right:14px;display:flex;justify-content:space-between;gap:12px}.view-badge{font-size:9px;letter-spacing:.75px;color:#9cd4d2;background:#0b2133df;border:1px solid #25495a;border-radius:6px;padding:5px 8px}.view-badge.right{color:#809cb0}.visual-room-title{font-size:15px;fill:#f4faff;font-weight:800;letter-spacing:1.2px}.visual-room-sub{font-size:10.5px;fill:#94b2c6;font-weight:550}.visual-room-count{font-size:16px;fill:#c8edff;font-weight:800}.patient-agent{cursor:pointer;transition:transform 950ms cubic-bezier(.21,.74,.3,1),opacity .35s;will-change:transform}.patient-agent:hover{filter:drop-shadow(0 0 7px #fff8)}.patient-agent:focus{outline:none}.agent-aura{opacity:.32;animation:agent-pulse 2.7s ease-in-out infinite;pointer-events:none}.agent-selected{opacity:0;stroke-dashoffset:0;animation:agent-orbit 10s linear infinite;pointer-events:none}.patient-agent.selected .agent-selected{opacity:1}.patient-agent.selected .agent-aura{opacity:.9}.visual-room{cursor:pointer}.visual-room:hover>rect:nth-of-type(2){stroke:#a4d6e2;stroke-width:3}.visual-ping{animation:agent-pulse 1.5s infinite}.floor-legend{display:flex;align-items:center;gap:17px;flex-wrap:wrap;padding:12px 18px;background:#15283a;border-top:1px solid #26425a;color:#abc0d0;font-size:10px}.floor-legend span{display:flex;gap:6px;align-items:center}.floor-legend i{height:9px;width:9px;border-radius:50%;display:inline-block}.legend-focus-btn{margin-left:auto;border:1px solid #476176;background:#1a3448;color:#b5d3dd;border-radius:6px;padding:7px 9px;font-size:10px}.legend-focus-btn.active{background:#5c3347;color:#ffd1d8;border-color:#af647b}.visual-controls{background:#101f30;border-top:1px solid #283f56;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 17px}.play-group{display:flex;gap:7px;flex-wrap:wrap}.visual-action{background:#23374e;border:1px solid #385773;color:#c4d9e8;font-weight:750;border-radius:7px;font-size:11px;padding:9px 12px;white-space:nowrap}.visual-action:hover{background:#2e4c62}.visual-action.primary{background:#60e6ce;border-color:#7df5e1;color:#09322e}.visual-control-hint{font-size:9px;color:#7997ad;text-align:right;max-width:180px}.visual-inspector{display:flex;flex-direction:column;min-height:500px}.inspector-head{padding:20px 19px;border-bottom:1px solid #293c52}.inspector-head h2{font-size:16px;margin:5px 0 0}.patient-inspector{padding:19px;flex:1;max-height:600px;overflow:auto}.inspector-empty{text-align:center;padding:30px 9px}.inspector-empty-icon{height:74px;width:74px;display:grid;place-items:center;border:1px solid #326576;background:#1d3947;color:#a0e6d7;border-radius:50%;margin:12px auto 22px;font-size:39px}.inspector-empty h3{font-size:15px;margin:4px 0 8px}.inspector-empty p{color:#8fa6bb;line-height:1.8;font-size:11.5px}.inspector-title{display:flex;align-items:center;gap:10px}.inspector-icon{display:grid;place-items:center;height:43px;width:43px;border:2px solid;border-radius:12px;font-size:22px}.inspector-title h3{margin:2px 0 0;font-size:19px}.inspector-priority{font-size:20px;font-weight:900;margin-left:auto}.inspector-current{padding:16px;background:#1d3649;border:1px solid #34546a;border-radius:9px;margin:18px 0;display:grid;gap:4px}.inspector-current small{font-size:9px;letter-spacing:1.4px;color:#87a3b9}.inspector-current strong{font-size:17px}.inspector-online{font-size:9px;color:#82d7bc;display:flex;align-items:center;gap:8px;margin-top:5px}.inspector-metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inspector-metrics>div{padding:12px;border:1px solid #2d4156;background:#18293c;border-radius:8px}.inspector-metrics small{display:block;font-size:10px;color:#869db6}.inspector-metrics strong{display:block;font-size:15px;margin-top:5px;font-variant-numeric:tabular-nums}.inspector-journey{margin-top:23px}.inspector-journey-head{font-size:10px;font-weight:750;letter-spacing:1.4px;color:#adcede;margin-bottom:14px;display:flex;justify-content:space-between}.inspector-journey-head span{font-size:9px;letter-spacing:0;color:#6f9caa}.journey-event{display:flex;gap:12px;align-items:flex-start;margin:0 0 15px}.journey-rail{width:11px;height:11px;background:#39536d;border:2px solid #829cb4;border-radius:50%;margin-top:4px;flex-shrink:0;box-shadow:0 0 0 4px #12293c}.journey-event.now .journey-rail{background:#5be0c6;border-color:#9af8e6}.journey-event strong{font-size:11px;color:#d7e7f4}.journey-event small{display:block;color:#83a1ba;font-size:9px;margin-top:3px}.inspector-disclaimer{border-top:1px solid #30465c;padding-top:16px;font-size:10px;color:#8aa3b8;line-height:1.5;margin-top:18px}.inspector-capacity{padding:20px;border-top:1px solid #30465c;background:#172a3c}.inspector-capacity h3{font-size:15px;margin:5px 0 19px}.capacity-row{margin-bottom:13px}.capacity-row>div:first-child{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:#9db9cd;margin-bottom:6px}.capacity-row strong{color:#eff9ff}.capacity-track{height:5px;border-radius:8px;background:#294055;overflow:hidden}.capacity-track span{display:block;height:100%;border-radius:8px;transition:width .3s}.twin-lower{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:15px;margin-top:15px}.twin-adjustment,.twin-story{background:#142336;border:1px solid #293e54;border-radius:12px;padding:22px}.twin-adjustment h2,.twin-story h2{margin:5px 0 6px;font-size:19px}.twin-adjustment p,.twin-story p{margin:0;color:#91abc0;font-size:11px;line-height:1.7}.twin-experiment-controls{display:grid;grid-template-columns:1fr 1fr;gap:16px 21px;margin-top:22px}.twin-control label{display:flex;justify-content:space-between;font-size:11px;color:#c6d8e4;margin-bottom:8px}.twin-control output{color:#6de9d0;font-weight:800}.twin-control input{width:100%;accent-color:#5be0c6}.twin-action-bar{display:flex;gap:8px;margin-top:21px;flex-wrap:wrap}.experiment-mode,.experiment-link{border:1px solid #435d73;background:#1c364b;border-radius:7px;padding:9px 11px;color:#c0d6e6;font-size:11px;font-weight:700}.experiment-mode.active{background:#1d4c45;border-color:#4d9c87;color:#a4ffdf}.experiment-link{margin-left:auto;color:#8eeedd;border-color:#3e776b}.twin-story{background:linear-gradient(135deg,#193a3a,#1a253f)}.twin-story-pills{display:flex;flex-wrap:wrap;gap:6px;margin:17px 0}.twin-story-pills span{padding:6px 8px;border:1px solid #407166;background:#214943;border-radius:5px;font-size:8px;color:#b2f7db;letter-spacing:.5px}.twin-story small{color:#8bb0b4;font-size:10px;line-height:1.65;display:block}@keyframes agent-pulse{50%{opacity:.65}}@keyframes agent-orbit{to{stroke-dashoffset:180}}
+@media(max-width:1350px){.visual-studio{grid-template-columns:minmax(0,1fr) 272px}.twin-hero-tag{display:none}.visual-control-hint{display:none}.floor-legend{gap:9px}}
+@media(max-width:1100px){.visual-studio{grid-template-columns:1fr}.visual-inspector{min-height:0;display:grid;grid-template-columns:1.3fr 1fr}.inspector-head{grid-column:1/-1}.patient-inspector{max-height:450px}.inspector-capacity{border-top:0;border-left:1px solid #30465c}.visual-scene{min-height:270px}}
+@media(max-width:720px){.twin-kpi-row{grid-template-columns:1fr 1fr}.twin-metric{padding:13px}.twin-metric strong{font-size:26px}.visual-studio{grid-template-columns:1fr}.visual-inspector{display:block}.twin-lower{grid-template-columns:1fr}.visual-scene{min-height:155px}.visual-scene-overlay{position:static;background:#0c1c2c;padding:7px;gap:6px}.visual-toolbar-heading strong{font-size:9px}.visual-toolbar-heading small{display:none}.visual-sim-clock{font-size:9px}.visual-controls{align-items:stretch;flex-direction:column}.floor-legend{gap:11px;padding:9px}.visual-action{font-size:10px;padding:8px}.twin-experiment-controls{grid-template-columns:1fr 1fr}.twin-hero h1{font-size:28px}}
+@media(prefers-reduced-motion:reduce){.patient-agent,.visual-live-dot,.agent-aura{animation:none!important;transition:none!important}}
+/* Keep patient panel compact and navigation readable on narrow screens. */
+@media(min-width:1101px){.visual-studio{align-items:start}.visual-inspector{max-height:700px}.patient-inspector{max-height:410px}}
+@media(max-width:820px){.nav-list{display:flex;gap:8px;min-width:0;overflow-x:auto;scrollbar-width:none}.nav-list .nav-btn{flex:0 0 auto;min-width:max-content;white-space:nowrap}.nav-list .nav-pill{margin-left:6px}}
+@media(max-width:720px){.visual-inspector{max-height:none}}
+/* v3 / Standalone 3D isometric hospital — no remote rendering engine required. */
+.twin-mode-switch{display:flex;gap:3px;padding:3px;border-radius:9px;background:#0d1e30;border:1px solid #3a566e;flex-shrink:0}
+.twin-mode-switch button{font:800 10px system-ui;color:#86a4ba;background:transparent;border:0;border-radius:6px;padding:7px 11px;cursor:pointer}
+.twin-mode-switch button.active{background:#397e82;color:#eafffb;box-shadow:0 0 15px #5de9c329}
+.visual-scene.mode-3d{min-height:540px;display:block}.visual-scene.mode-3d .facility-scene{display:none}
+.visual-scene:not(.mode-3d) .twin3d-host{display:none}
+.twin3d-host{position:relative;width:100%;height:540px;overflow:hidden;background:radial-gradient(ellipse at 40% 35%,#244765,#0b1a2d 75%)}
+.twin3d-host canvas{display:block;width:100%;height:100%;cursor:grab;touch-action:none;outline:0}
+.twin3d-host canvas:active{cursor:grabbing}
+.twin3d-controls{position:absolute;z-index:3;right:14px;top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;pointer-events:none}
+.twin3d-camera,.twin3d-zoom{display:flex;padding:4px;border:1px solid #57738c;background:#10263bdb;border-radius:9px;box-shadow:0 8px 20px #02081730;gap:2px;pointer-events:auto}
+.twin3d-camera button,.twin3d-zoom button{color:#c0d6eb;font-size:10px;font-weight:750;border:none;background:transparent;padding:8px 10px;border-radius:6px;cursor:pointer;white-space:nowrap}
+.twin3d-zoom button{font-size:16px;line-height:10px;min-height:30px;min-width:30px}
+.twin3d-camera button.active,.twin3d-camera button:hover,.twin3d-zoom button:hover{color:#7df4d8;background:#24576a}
+.twin3d-hint{position:absolute;z-index:2;bottom:40px;left:18px;letter-spacing:1.0px;color:#a7c4d9;font-size:9px;font-weight:750;background:#071c2cba;border:1px solid #47677c;padding:9px 11px;border-radius:7px;pointer-events:none}
+.visual-scene.mode-3d .visual-scene-overlay{z-index:4}
+.visual-scene:fullscreen.mode-3d{height:100vh;padding:0}.visual-scene:fullscreen .twin3d-host{height:100vh}
+@media(max-width:900px){.visual-toolbar-right{gap:6px}.twin-mode-switch button{padding:6px 8px}.twin3d-host{height:460px}.visual-scene.mode-3d{min-height:460px}}
+@media(max-width:600px){.twin3d-host{height:380px}.visual-scene.mode-3d{min-height:380px}.twin3d-controls{top:64px;left:8px;right:8px;justify-content:center}.twin3d-camera button{font-size:9px;padding:7px 8px}.twin3d-hint{font-size:8px;left:7px;bottom:38px}.twin-mode-switch button{font-size:9px}.visual-sim-clock{display:none}}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M2 12h5l3-8 4 16 3-8h5"/></symbol>
+  <symbol id="i-beaker" viewBox="0 0 24 24"><path d="M9 3h6m-5 0v7l-6.5 9.5a2 2 0 0 0 1.7 3h13.6a2 2 0 0 0 1.7-3L14 10V3M7 16h10"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 18V5a3 3 0 0 0-5.6-1.6A4 4 0 0 0 4 10a4 4 0 0 0 0 7 4 4 0 0 0 6.5 3.5A3 3 0 0 0 12 18Zm0 0V5a3 3 0 0 1 5.6-1.6A4 4 0 0 1 20 10a4 4 0 0 1 0 7 4 4 0 0 1-6.5 3.5A3 3 0 0 1 12 18Z"/><path d="M7 8q3 0 3 4M17 8q-3 0-3 4M8 17q2-2 4 1 2-3 4-1"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 21c-2-1.2-5-1.6-9-1V4c4-.7 7 0 9 1.4C14 4 17 3.3 21 4v15c-4-.6-7-.2-9 1Zm0-15.5V21"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16M8 3v8M16 13v8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 12 7-12 7V5Z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 11a9 9 0 1 1 2 6M3 4v7h7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M3 9a14 14 0 0 1 18 0M6 13a9 9 0 0 1 12 0m-9 4a5 5 0 0 1 6 0M12 21h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 5v1"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 20V5m0 11h18v4m0-4v-7a3 3 0 0 0-3-3h-6v10M3 9h9"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="m12 3 10 18H2L12 3Z"/><path d="M12 9v5m0 4h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-9m-6 0h6v6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
+</svg>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="HospitalFlow AI home">
+      <span class="brand-symbol"><svg class="icon"><use href="#i-activity"/></svg></span>
+      <span><strong>HOSPITAL<span class="brand-accent">FLOW</span></strong><small>DIGITAL TWIN ENGINE</small></span>
+    </a>
+    <div class="side-label">WORKSPACE</div>
+    <nav class="nav-list" aria-label="Primary navigation">
+      <button class="nav-btn active" data-tab="twin"><svg class="icon"><use href="#i-activity"/></svg>Visual digital twin<span class="nav-pill">2D + 3D</span></button>
+      <button class="nav-btn" data-tab="overview"><svg class="icon"><use href="#i-grid"/></svg>Command center<span class="nav-pill">LIVE</span></button>
+      <button class="nav-btn" data-tab="scenario"><svg class="icon"><use href="#i-beaker"/></svg>Scenario lab</button>
+      <button class="nav-btn" data-tab="model"><svg class="icon"><use href="#i-brain"/></svg>Forecast studio</button>
+      <button class="nav-btn" data-tab="about"><svg class="icon"><use href="#i-book"/></svg>Methodology</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="system-card"><div class="system-row"><span class="status-dot"></span><span>SIMULATION ONLINE</span></div><div class="system-metadata">Local engine · no external APIs</div><div class="system-line"></div><div class="system-row light"><svg class="icon mini"><use href="#i-shield"/></svg> Synthetic data only</div></div>
+      <div class="side-foot">PROOF OF CONCEPT <span>v3.0.0</span></div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumbs">HEALTHCARE INTELLIGENCE <span>/</span> <span id="breadcrumb">VIRTUAL HOSPITAL</span></div><div class="topbar-right"><span class="time-chip"><svg class="icon mini"><use href="#i-clock"/></svg><span id="simClock">Day 1 · 08:00</span></span><span class="live-chip"><span class="status-dot"></span>SIMULATED LIVE</span><span class="avatar">HF</span></div></header>
+    <div class="page-container">
+      <section class="tab active" id="tab-twin">
+        <div class="twin-hero">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span>INTERACTIVE VIRTUAL FACILITY · DIGITAL TWIN VISUALIZER</div><h1>A hospital you can <span>step inside.</span></h1><p class="lede">Explore a stylized 3D hospital. Orbit the scene, select individual patients, change staffing or arrivals, and watch the synthetic digital twin evolve in simulation time.</p></div>
+          <div class="twin-hero-tag"><span class="status-dot"></span> STATE-SYNCHRONIZED DIGITAL TWIN <small>SIMULATION / NO REAL PATIENT DATA</small></div>
+        </div>
+        <div class="twin-kpi-row">
+          <div class="twin-metric"><span>IN THE FACILITY</span><strong id="twinCensus">—</strong><small>Simulated patient census</small></div>
+          <div class="twin-metric"><span>WAITING FOR CARE</span><strong id="twinWaiting">—</strong><small>Across triage, ED and ICU</small></div>
+          <div class="twin-metric"><span>CRITICAL UNIT USE</span><strong id="twinIcu">—</strong><small>Occupied ICU capacity</small></div>
+          <div class="twin-metric"><span>PATIENTS DISCHARGED</span><strong id="twinExited">—</strong><small>Cumulative during simulation</small></div>
+        </div>
+        <div class="visual-studio">
+          <section class="visual-main">
+            <div class="visual-toolbar">
+              <div class="visual-toolbar-heading"><span class="visual-live-dot"></span><div><strong>VIRTUAL EMERGENCY DEPARTMENT</strong><small>Orbitable 3D & floor plan · individual patient agents</small></div></div>
+              <div class="visual-toolbar-right"><div class="twin-mode-switch" aria-label="Twin display mode"><button id="mode3d" class="active" aria-pressed="true">◈ 3D</button><button id="mode2d" aria-pressed="false">▦ 2D</button></div><span id="twinClock" class="visual-sim-clock">DAY 1 · 09:40</span><button class="visual-icon-btn" id="floorFullscreen" aria-label="Expand digital twin" title="Toggle fullscreen">⛶</button></div>
+            </div>
+            <div class="visual-scene mode-3d" id="visualSceneWrap"><div id="facilityScene" class="facility-scene"></div><div id="twin3dHost" class="twin3d-host"><canvas id="twin3dCanvas" aria-label="Orbitable synthetic 3D hospital. Drag to rotate, scroll to zoom, click patients to inspect." tabindex="0"></canvas><div class="twin3d-controls"><div class="twin3d-camera"><button class="active" data-view3d="iso">◈ Isometric</button><button data-view3d="top">▦ Top</button><button data-view3d="side">◧ Reverse</button></div><div class="twin3d-zoom"><button id="view3dMinus" aria-label="Zoom out">−</button><button id="view3dPlus" aria-label="Zoom in">+</button><button id="view3dReset" aria-label="Reset camera">↺</button></div></div><div class="twin3d-hint">DRAG TO ORBIT · SCROLL TO ZOOM · CLICK A PATIENT</div></div><div class="visual-scene-overlay"><span id="twinViewStatus" class="view-badge">◈ ISOMETRIC 3D / LIVE STATE</span><span class="view-badge right" id="visualCountNote">Patient agents synchronized</span></div></div>
+            <div class="floor-legend"><span><i style="background:#ff607b"></i>Critical P1</span><span><i style="background:#ff9678"></i>High P2</span><span><i style="background:#ffce70"></i>Medium P3</span><span><i style="background:#5ddcce"></i>Low P4</span><span><i style="background:#74aefc"></i>Low P5</span><button id="criticalOnly" class="legend-focus-btn" aria-pressed="false">◎ Highlight critical</button></div>
+            <div class="visual-controls"><div class="play-group"><button class="visual-action primary" id="twinPlay">▶ Run simulation</button><button class="visual-action" id="twinStep">+5 minutes</button><button class="visual-action" id="twinFastStep">+30 minutes</button><button class="visual-action" id="twinReset">↺ Reset</button></div><span class="visual-control-hint">Movement follows actual changes in the patient simulation</span></div>
+          </section>
+          <aside class="visual-inspector">
+            <div class="inspector-head"><div class="panel-kicker">PATIENT TRACE / LIVE STATE</div><h2>Patient inspection</h2></div>
+            <div id="patientInspector" class="patient-inspector"><div class="inspector-empty"><div class="inspector-empty-icon">✳</div><h3>Select a patient on the floor</h3><p>Click any glowing patient marker to inspect their current simulated state and care journey.</p></div></div>
+            <div class="inspector-capacity"><div class="panel-kicker">PHYSICAL RESOURCE CONSTRAINTS</div><h3>Resource occupancy</h3><div id="capacityRows"></div></div>
+          </aside>
+        </div>
+        <div class="twin-lower">
+          <div class="twin-adjustment"><div><div class="panel-kicker">EXPERIMENT IN REAL TIME</div><h2>Change the environment.</h2><p>The simulation reacts immediately. Use surge mode, or adjust the available hospital resources.</p></div><div class="twin-experiment-controls">
+            <div class="twin-control"><label for="twinArrival">Arrivals / hour <output id="twinArrivalOutput">17</output></label><input type="range" id="twinArrival" min="5" max="45" step="1" value="17"></div>
+            <div class="twin-control"><label for="twinNurses">Triage nurses <output id="twinNursesOutput">3</output></label><input type="range" id="twinNurses" min="1" max="12" step="1" value="3"></div>
+            <div class="twin-control"><label for="twinDoctors">ED physicians <output id="twinDoctorsOutput">7</output></label><input type="range" id="twinDoctors" min="1" max="20" step="1" value="7"></div>
+            <div class="twin-control"><label for="twinBeds">Treatment beds <output id="twinBedsOutput">12</output></label><input type="range" id="twinBeds" min="2" max="35" step="1" value="12"></div>
+          </div><div class="twin-action-bar"><button id="twinNormal" class="experiment-mode active">Normal demand</button><button id="twinSurge" class="experiment-mode">⚡ Emergency surge ×1.8</button><button id="twinGoScenario" class="experiment-link">Compare staffing strategies →</button></div></div>
+          <div class="twin-story"><div class="panel-kicker">WHY THIS IS A DIGITAL TWIN</div><h2>The hospital changes because the model changes.</h2><p>Both the interactive 3D hospital and 2D floor plan are connected to the same seeded, minute-resolution patient simulation. Each avatar represents a modeled patient with an acuity, journey, stage, timing, and resource usage—not an animated stock illustration.</p><div class="twin-story-pills"><span>01 · DATA STREAM</span><span>02 · VIRTUAL STATE</span><span>03 · WHAT-IF RUNS</span><span>04 · DECISIONS</span></div><small>Prototype disclaimer: all data and clinical pathways are synthetic. Floor positions illustrate operational stage only, not measured physical coordinates.</small></div>
+        </div>
+      </section>
+      <section class="tab" id="tab-overview">
+        <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-line"></span>EMERGENCY CARE INTELLIGENCE</div><h1>Emergency department <span>command center.</span></h1><p class="lede">A live, continuously updated model of patient flow and resource constraints — all in one control room.</p></div><button class="btn btn-ghost export-btn" id="exportSnapshot"><svg class="icon mini"><use href="#i-download"/></svg>Export snapshot</button></div>
+        <div class="kpi-grid">
+          <article class="kpi-card"><div class="kpi-head"><span>Total patients in system</span><span class="kpi-icon mint"><svg class="icon"><use href="#i-users"/></svg></span></div><div class="kpi-value" id="kpiActive">—</div><div class="kpi-foot"><span class="dot mint-bg"></span>Current simulated census</div></article>
+          <article class="kpi-card"><div class="kpi-head"><span>Mean time to clinician</span><span class="kpi-icon blue"><svg class="icon"><use href="#i-clock"/></svg></span></div><div class="kpi-value"><span id="kpiWait">—</span><em>min</em></div><div class="kpi-foot">Arrival → start of treatment</div></article>
+          <article class="kpi-card"><div class="kpi-head"><span>Patients awaiting care</span><span class="kpi-icon orange"><svg class="icon"><use href="#i-alert"/></svg></span></div><div class="kpi-value" id="kpiQueue">—</div><div class="kpi-foot"><span class="dot orange-bg"></span>Includes triage, care & ICU</div></article>
+          <article class="kpi-card"><div class="kpi-head"><span>ED treatment bed use</span><span class="kpi-icon violet"><svg class="icon"><use href="#i-bed"/></svg></span></div><div class="kpi-value"><span id="kpiBeds">—</span><em>%</em></div><div class="kpi-foot"><div class="mini-progress"><span id="bedProgress"></span></div>Occupied / available beds</div></article>
+        </div>
+        <div class="content-grid">
+          <div class="center-stack">
+            <article class="panel map-panel"><div class="panel-header"><div><div class="panel-kicker">REAL-TIME SYSTEM VIEW</div><h2>Patient journey twin</h2></div><div class="header-right"><span class="map-legend"><span class="dot mint-bg"></span>Flow active</span><span class="map-legend"><span class="dot red-bg"></span>High priority</span></div></div>
+              <div id="hospitalMap" class="hospital-map" role="img" aria-label="Live patient flow across emergency department stages"></div>
+              <div class="map-footer"><span><svg class="icon mini"><use href="#i-wifi"/></svg>Simulated data stream · synchronized every minute</span><strong id="mapArrivals">— ARRIVALS / HR</strong></div></article>
+            <article class="panel trend-panel"><div class="panel-header"><div><div class="panel-kicker">OPERATIONAL MONITORING</div><h2>Patient flow over time</h2></div><div class="segmented" role="group" aria-label="Trend metric"><button data-metric="queue" class="selected">Queue</button><button data-metric="active">Census</button><button data-metric="wait">Wait</button></div></div><div id="trendChart" class="chart-wrap"></div><div class="chart-bottom"><span><i class="legend-line mint-bg"></i><span id="chartLegend">Patients in queue</span></span><span>Last 3 simulation hours</span></div></article>
+            <article class="panel patient-panel"><div class="panel-header"><div><div class="panel-kicker">PATIENT-LEVEL STATE</div><h2>Patient activity monitor</h2></div><span class="badge badge-neutral">SYNTHETIC IDENTITIES</span></div><div class="table-scroll"><table class="patient-table"><thead><tr><th>Patient ID</th><th>Acuity</th><th>Current state</th><th>Time in system</th></tr></thead><tbody id="patientRows"></tbody></table></div></article>
+          </div>
+          <aside class="right-stack">
+            <article class="panel controls-panel"><div class="panel-header compact"><div><div class="panel-kicker">TWIN INPUT PARAMETERS</div><h2>Simulation controls</h2></div><span class="controls-icon"><svg class="icon"><use href="#i-sliders"/></svg></span></div>
+              <div class="config-body"><div class="control-head"><span>ARRIVAL SCENARIO</span><span id="scenarioBadge" class="badge badge-mint">NORMAL</span></div><div class="mode-switch"><button id="normalMode" class="active">Standard</button><button id="surgeMode">Surge ×1.8</button></div>
+              <div class="slider-field"><div class="slider-label"><label for="arrivalInput">Base arrivals per hour</label><output id="arrivalOutput">17</output></div><input id="arrivalInput" type="range" min="5" max="45" value="17" step="1"><div class="slider-ends"><span>5 / hr</span><span>45 / hr</span></div></div>
+              <div class="slider-field"><div class="slider-label"><label for="nursesInput">Triage nurses</label><output id="nursesOutput">3</output></div><input id="nursesInput" type="range" min="1" max="12" value="3" step="1"><div class="slider-ends"><span>1</span><span>12</span></div></div>
+              <div class="slider-field"><div class="slider-label"><label for="physiciansInput">ED physicians</label><output id="physiciansOutput">7</output></div><input id="physiciansInput" type="range" min="1" max="20" value="7" step="1"><div class="slider-ends"><span>1</span><span>20</span></div></div>
+              <div class="slider-field"><div class="slider-label"><label for="bedsInput">Treatment beds</label><output id="bedsOutput">12</output></div><input id="bedsInput" type="range" min="2" max="36" value="12" step="1"><div class="slider-ends"><span>2</span><span>36</span></div></div>
+              <div class="control-divider"></div><div class="control-head"><span>ENGINE CONTROLS</span><span class="engine-time">1 MIN / STEP</span></div><div class="playback"><button id="playButton" class="btn btn-primary"><svg class="icon mini"><use href="#i-play"/></svg><span id="playText">Play</span></button><button id="resetButton" class="btn btn-ghost" title="Restart from fixed seed"><svg class="icon mini"><use href="#i-reset"/></svg>Reset</button></div><div class="speed-row"><span>Playback speed</span><div class="speed-switch"><button class="selected" data-speed="1">1×</button><button data-speed="5">5×</button><button data-speed="15">15×</button></div></div><p class="control-note"><svg class="icon mini"><use href="#i-info"/></svg>Every patient, wait time and resource count is generated by the transparent local simulator.</p></div>
+            </article>
+            <article class="panel event-panel"><div class="panel-header compact"><div><div class="panel-kicker">EVENT STREAM</div><h2>Operations feed</h2></div><span class="pulsing"></span></div><div id="eventFeed" class="event-feed"></div><button class="open-lab" data-go="scenario">Open scenario lab <svg class="icon mini"><use href="#i-arrow"/></svg></button></article>
+            <article class="insight-card"><div class="insight-graphic"><svg class="icon"><use href="#i-brain"/></svg></div><div class="insight-kicker">BUILT FOR WHAT-IF THINKING</div><h3>What happens when demand doubles?</h3><p>Test demand surges and compare staffing allocations with exactly the same random patient arrival stream.</p><button data-go="scenario">Explore interventions <svg class="icon mini"><use href="#i-arrow"/></svg></button></article>
+          </aside>
+        </div>
+      </section>
+      <section class="tab" id="tab-scenario">
+        <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-line"></span>DECISION INTELLIGENCE</div><h1>Explore a better <span>operating strategy.</span></h1><p class="lede">Compare a fixed staffing plan against a constrained resource search using identical synthetic demand.</p></div><span class="pill-title">SAME SEED · FAIR COMPARISON</span></div>
+        <div class="scenario-hero"><div><div class="panel-kicker">THE EXPERIMENT</div><h2>Where should your three float staff go?</h2><p>Our bounded search assigns three additional floating team members between triage and treatment. Every candidate gets exactly three staff, and every run uses the same exogenous arrivals. The optimizer selects the lowest operational score.</p></div><button class="btn btn-primary run-btn" id="runScenario"><svg class="icon mini"><use href="#i-beaker"/></svg>Run scenario analysis</button></div>
+        <div class="compare-grid"><article class="panel compare-card"><div class="compare-head"><span class="compare-mark base"></span><span>BASELINE</span><span class="badge badge-neutral">CURRENT SETUP</span></div><h2 id="baselineWait">— <small>min avg wait</small></h2><div class="compare-detail"><span>Mean queue size</span><strong id="baselineQueue">—</strong></div><div class="compare-detail"><span>Discharges / simulated 6h</span><strong id="baselineDone">—</strong></div><div class="compare-detail"><span>Staff allocation</span><strong id="baselineStaff">—</strong></div></article>
+          <article class="panel compare-card optim"><div class="compare-head"><span class="compare-mark optim"></span><span>CONSTRAINED OPTIMIZATION</span><span class="badge badge-mint">BEST CANDIDATE</span></div><h2 id="optimizedWait">— <small>min avg wait</small></h2><div class="compare-detail"><span>Mean queue size</span><strong id="optimizedQueue">—</strong></div><div class="compare-detail"><span>Discharges / simulated 6h</span><strong id="optimizedDone">—</strong></div><div class="compare-detail"><span>Float staff allocation</span><strong id="optimizedStaff">—</strong></div></article>
+          <article class="compare-summary"><span class="panel-kicker">MODEL-BASED CHANGE</span><span class="large-gain" id="scenarioGain">—</span><strong id="gainLabel">Change in mean time to care</strong><p id="recommendation">Run the comparison to see the lowest-scoring staffing allocation for your selected conditions.</p><div class="mini-disclaimer">Simulated comparison, not a clinical recommendation.</div></article>
+        </div>
+        <article class="panel comparison-chart-panel"><div class="panel-header"><div><div class="panel-kicker">CONTROLLED COUNTERFACTUALS</div><h2>Queue progression: baseline vs optimized allocation</h2></div><div class="compare-legend"><span><i class="legend-line violet-bg"></i>Baseline</span><span><i class="legend-line mint-bg"></i>Optimized</span></div></div><div class="chart-wrap" id="comparisonChart"></div></article>
+        <article class="panel candidate-panel"><div class="panel-header"><div><div class="panel-kicker">SEARCH TRANSPARENCY</div><h2>Every staffing allocation tested</h2></div><span class="badge badge-neutral">EXHAUSTIVE GRID SEARCH</span></div><div class="table-scroll"><table class="patient-table"><thead><tr><th>Allocation</th><th>Triage float staff</th><th>Treatment float staff</th><th>Mean time to care</th><th>Mean queue</th><th>Weighted score</th></tr></thead><tbody id="candidateRows"></tbody></table></div><p class="panel-note">Score = mean time to care + 0.8 × mean total queue + 40 / (1 + discharges / 50). This illustrative objective does not optimize clinical safety, acuity outcomes, or cost.</p></article>
+      </section>
+      <section class="tab" id="tab-model">
+        <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-line"></span>MODEL INTELLIGENCE</div><h1>Demand signals, <span>made interpretable.</span></h1><p class="lede">A lightweight ridge-regression model trained and evaluated entirely on generated synthetic hourly arrival data.</p></div><span class="pill-title">NO PATIENT DATA USED</span></div>
+        <div class="model-stat-grid"><article class="panel model-stat"><span>HOLDOUT MEAN ABSOLUTE ERROR</span><div><strong id="forecastMae">—</strong><em>patients / hr</em></div><small>21-day synthetic holdout</small></article><article class="panel model-stat"><span>CONSTANT-MEAN BASELINE MAE</span><div><strong id="baselineMae">—</strong><em>patients / hr</em></div><small>Comparison on identical test rows</small></article><article class="panel model-stat"><span>TRAINING OBSERVATIONS</span><div><strong>1,848</strong><em>hourly rows</em></div><small>77 synthetic days · fixed seed</small></article></div>
+        <article class="panel forecast-chart-panel"><div class="panel-header"><div><div class="panel-kicker">24-HOUR SCENARIO FORECAST</div><h2>Projected arrivals by hour</h2></div><span class="badge badge-mint">SYNTHETIC REGRESSION</span></div><div id="forecastChart" class="chart-wrap tall"></div><div class="forecast-note"><svg class="icon mini"><use href="#i-info"/></svg>The display scales the fitted synthetic hourly pattern by your base arrival setting and surge multiplier. It does not forecast real hospital demand.</div></article>
+        <div class="method-grid"><article class="panel method-card"><span class="method-num">01</span><h3>Generate</h3><p>98 deterministic synthetic days of hourly arrivals with designed diurnal patterns and Poisson noise. No external hospital dataset is claimed.</p></article><article class="panel method-card"><span class="method-num">02</span><h3>Train</h3><p>Fit six interpretable features: intercept, 24-hour and 12-hour Fourier harmonics, and weekend flag. Use regularized least squares.</p></article><article class="panel method-card"><span class="method-num">03</span><h3>Evaluate</h3><p>Train on days 1–77, evaluate only on days 78–98. Compare holdout MAE against a constant mean. The benchmark is synthetic only.</p></article></div>
+      </section>
+      <section class="tab" id="tab-about">
+        <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-line"></span>TRANSPARENCY & DESIGN</div><h1>Built to simulate. <span>Not to overclaim.</span></h1><p class="lede">A working, reproducible digital twin prototype with explicit assumptions, testable behavior and limitations.</p></div><span class="pill-title">OPEN SOURCE · MIT</span></div>
+        <div class="about-grid"><article class="panel about-feature"><div class="about-icon"><svg class="icon"><use href="#i-activity"/></svg></div><h2>Virtual operational state</h2><p>Individual synthetic patients move through time-stepped ED queues, triage, care, observation, ICU and discharge. Each step updates resource occupancy and time-to-care measures.</p></article><article class="panel about-feature"><div class="about-icon"><svg class="icon"><use href="#i-wifi"/></svg></div><h2>Dynamic synchronization</h2><p>A deterministic pseudo-random synthetic event stream enters the digital twin on every simulated minute. Inputs can change while the model continues running.</p></article><article class="panel about-feature"><div class="about-icon"><svg class="icon"><use href="#i-beaker"/></svg></div><h2>Counterfactual experiments</h2><p>Bounded scenarios compare different allocations of the same float-staff pool. Exogenous arrivals use an independent random stream for consistency between interventions.</p></article><article class="panel about-feature"><div class="about-icon"><svg class="icon"><use href="#i-brain"/></svg></div><h2>AI/ML component</h2><p>The forecast studio loads an actual trained harmonic ridge-regression model, including held-out error estimates. Staffing uses interpretable exhaustive optimization, not a language model.</p></article></div>
+        <article class="panel constraint-panel"><div class="panel-header"><div><div class="panel-kicker">SCIENTIFIC INTEGRITY</div><h2>Assumptions and boundaries</h2></div></div><div class="constraints"><div><svg class="icon"><use href="#i-check"/></svg><span>All arrivals, acuity categories, service times, dispositions and hospital capacities are demonstrative synthetic assumptions.</span></div><div><svg class="icon"><use href="#i-check"/></svg><span>The model is a minute-resolution stochastic queueing simulation; no claims of physical fidelity or validated clinical decision support.</span></div><div><svg class="icon"><use href="#i-check"/></svg><span>Patient-level identities exist only in browser memory; no medical records or external services are accessed.</span></div><div><svg class="icon"><use href="#i-check"/></svg><span>Optimizer outcomes depend on the simulation rules, selected scenario and seed. They do not establish improvements at real hospitals.</span></div><div><svg class="icon"><use href="#i-check"/></svg><span>Production use would require hospital event-log calibration, prospective validation, clinician review, auditability and governance.</span></div></div></article>
+        <div class="footer-callout"><div><div class="eyebrow">HOSPITALFLOW AI</div><h2>Better decisions start with better experiments.</h2><p>An offline-first educational proof of concept. Includes source code, tests, synthetic datasets, model training and submission documents.</p></div><button class="btn btn-primary" data-go="scenario">Try scenario lab <svg class="icon mini"><use href="#i-arrow"/></svg></button></div>
+      </section>
+    </div>
+    <footer class="main-footer"><span>© 2026 HOSPITALFLOW AI · OPEN-SOURCE PROTOTYPE</span><span>DEMONSTRATION ONLY — NOT FOR CLINICAL USE</span></footer>
+  </main>
+</div>
+<div role="status" aria-live="polite" class="toast" id="toast"></div>
+<script>window.__forecastModel={"name": "Synthetic ED arrival forecaster", "type": "Ridge regression with hourly Fourier features", "training_data": "Deterministic generated synthetic hourly counts \u2014 not hospital data", "seed": 34071, "training_days": 77, "test_days": 21, "features": ["intercept", "sin24", "cos24", "sin12", "cos12", "is_weekend"], "weights": [16.9103687, 1.1794937, -3.2800567, -1.107344, 2.0664453, -2.3283358], "holdout_mae": 3.215, "constant_baseline_mae": 4.138, "holdout_rmse": 4.069, "limitation": "Educational synthetic-data benchmark. Results cannot infer real ED volumes, accuracy, or clinical outcomes."};</script><script>
+/**
+ * HospitalFlow AI — minute-step, seeded, stochastic emergency department twin.
+ * All values are illustrative / synthetic and are NOT medical predictions.
+ */
+const DEFAULT_CONFIG = Object.freeze({
+  arrivalsPerHour: 17, nurses: 3, physicians: 7, treatmentBeds: 12,
+  icuBeds: 8, surge: 1, flexStaff: 3, seed: 34071,
+});
+
+const STAGES = Object.freeze([
+  'triageQueue', 'triage', 'careQueue', 'care', 'icuQueue', 'icu', 'observation', 'discharged'
+]);
+
+function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+function mean(arr) { return arr.length ? arr.reduce((a,b)=>a+b,0)/arr.length : 0; }
+function percentile(values,p) {
+  if (!values.length) return 0;
+  const a=[...values].sort((x,y)=>x-y);
+  const i=(a.length-1)*p, j=Math.floor(i);
+  return a[j]+(a[Math.min(j+1,a.length-1)]-a[j])*(i-j);
+}
+function rng(seed) {
+  let state=(Math.floor(seed) >>> 0) || 1;
+  return ()=>{ state=(1664525*state+1013904223)>>>0; return state/4294967296; };
+}
+function poisson(lambda,random) {
+  if(lambda<=0) return 0;
+  const limit=Math.exp(-lambda); let p=1,k=0;
+  do {k++;p*=random();} while(p>limit);
+  return k-1;
+}
+function patientSeverity(random) {
+  const x=random();
+  return x<.035?1:x<.16?2:x<.52?3:x<.86?4:5;
+}
+function diurnalFactor(minute) {
+  const hour=(8+minute/60)%24;
+  return clamp(1+.24*Math.sin((hour-8)*Math.PI/12)+.12*Math.cos((hour-14)*Math.PI/6),.56,1.50);
+}
+function randRange(random,lo,hi) {return lo+(hi-lo)*random();}
+function priority(a,b){return a.severity-b.severity || a.arrived-b.arrived || a.id-b.id;}
+
+class HospitalTwin {
+  constructor(config={}) { this.reset(config); }
+  reset(config={}) {
+    this.config={...DEFAULT_CONFIG,...config};
+    this.config.nurses=Math.round(clamp(this.config.nurses,1,30));
+    this.config.physicians=Math.round(clamp(this.config.physicians,1,40));
+    this.config.treatmentBeds=Math.round(clamp(this.config.treatmentBeds,1,100));
+    this.config.icuBeds=Math.round(clamp(this.config.icuBeds,1,60));
+    this.time=0;this.nextId=1000;this.patients=[];this.dischargeCount=0;
+    this.waitSamples=[];this.completedTimes=[];this.arrivalEvents=[];
+    this.history=[];this.log=[];
+    this.arrivalRand=rng(this.config.seed+13);
+    this.clinicalRand=rng(this.config.seed+27);
+    this.severityRand=rng(this.config.seed+39);
+    this.routingRand=rng(this.config.seed+51);
+    this.record(true);
+    return this;
+  }
+  arrivalRate() {
+    return this.config.arrivalsPerHour*this.config.surge*diurnalFactor(this.time);
+  }
+  pushLog(message,type='info') {
+    this.log.unshift({minute:this.time,message,type});
+    if(this.log.length>70)this.log.length=70;
+  }
+  enterPatient() {
+    const severity=patientSeverity(this.severityRand);
+    const p={id:++this.nextId,severity,arrived:this.time,status:'triageQueue',remaining:0,
+      triageAt:null,careAt:null,dischargedAt:null,icuNeeded:false,
+      journey:[{stage:'triageQueue',minute:this.time}]};
+    this.patients.push(p);
+    this.arrivalEvents.push(this.time);
+    if(severity<=2)this.pushLog(`Priority ${severity} patient #${p.id} arrived`,'critical');
+    return p;
+  }
+  transition(p,stage) {
+    if(p.status===stage)return;
+    p.status=stage;
+    p.journey.push({stage,minute:this.time});
+  }
+  step(minutes=1) {
+    for(let m=0;m<minutes;m++) {
+      this.time++;
+      const arrivals=poisson(this.arrivalRate()/60,this.arrivalRand);
+      for(let i=0;i<arrivals;i++)this.enterPatient();
+      // Complete service before admission to free real resources.
+      for(const p of this.patients) {
+        if(!['triage','care','icu','observation'].includes(p.status))continue;
+        p.remaining--;
+        if(p.remaining>0)continue;
+        if(p.status==='triage')this.transition(p,'careQueue');
+        else if(p.status==='care') {
+          const r=this.routingRand();
+          if(r < (p.severity<=2 ? .23 : .055)) {
+            this.transition(p,'icuQueue');p.icuNeeded=true;
+          } else if(r < (p.severity<=2 ? .42 : .24)) {
+            this.transition(p,'observation'); p.remaining=Math.round(randRange(this.clinicalRand,35,100));
+          } else this.discharge(p);
+        } else if(p.status==='icu'||p.status==='observation')this.discharge(p);
+      }
+      // Triage staff allocated to triage rooms; priority service for high acuity.
+      let activeTriage=this.count('triage');
+      const triageWait=this.patients.filter(p=>p.status==='triageQueue').sort(priority);
+      for(const p of triageWait) {
+        if(activeTriage>=this.config.nurses)break;
+        this.transition(p,'triage');p.triageAt=this.time;
+        p.remaining=Math.max(2,Math.round(randRange(this.clinicalRand,4,11)+(p.severity<=2?4:0)));
+        activeTriage++;
+      }
+      // ED physicians and treatment beds are both binding constraints.
+      let activeCare=this.count('care');
+      const careWait=this.patients.filter(p=>p.status==='careQueue').sort(priority);
+      for(const p of careWait) {
+        if(activeCare>=Math.min(this.config.physicians,this.config.treatmentBeds))break;
+        this.transition(p,'care');p.careAt=this.time;
+        const waited=p.careAt-p.arrived;
+        this.waitSamples.push(waited);
+        p.remaining=Math.max(4,Math.round(randRange(this.clinicalRand,12,32)*(p.severity<=2?1.6:1)));
+        activeCare++;
+      }
+      let activeICU=this.count('icu');
+      const icuWait=this.patients.filter(p=>p.status==='icuQueue').sort(priority);
+      for(const p of icuWait) {
+        if(activeICU>=this.config.icuBeds)break;
+        this.transition(p,'icu');p.remaining=Math.round(randRange(this.clinicalRand,130,310));
+        activeICU++;
+      }
+      if(this.time%10===0)this.record();
+      if(this.time%90===0)this.pushLog(`Operations snapshot saved · hour ${Math.floor(this.time/60)+1}`,'system');
+    }
+    return this;
+  }
+  discharge(p) {
+    this.transition(p,'discharged');p.dischargedAt=this.time;this.dischargeCount++;
+    this.completedTimes.push(this.time-p.arrived);
+  }
+  count(status){return this.patients.reduce((n,p)=>n+(p.status===status),0);}
+  counts() {
+    const out={};for(const s of STAGES)out[s]=0;
+    for(const p of this.patients)out[p.status]++;
+    return out;
+  }
+  getSnapshot() {
+    const c=this.counts();
+    const active=this.patients.length-c.discharged;
+    const inQueue=c.triageQueue+c.careQueue+c.icuQueue;
+    const waiting=this.patients.filter(p=>p.status==='triageQueue'||p.status==='careQueue');
+    const stale=waiting.filter(p=>this.time-p.arrived>45).length;
+    const recentArrivals=this.arrivalEvents.filter(t=>t>this.time-60).length;
+    const recentDischarges=this.patients.filter(p=>p.dischargedAt!==null&&p.dischargedAt>this.time-60).length;
+    return {minute:this.time,active,arrivals:this.patients.length,arrivalsLastHour:recentArrivals,
+      queue:inQueue,edQueue:c.triageQueue+c.careQueue,critical:this.patients.filter(p=>p.status!=='discharged'&&p.severity<=2).length,
+      bedOccupancy:Math.round(100*c.care/this.config.treatmentBeds),
+      icuOccupancy:Math.round(100*c.icu/this.config.icuBeds),
+      meanWait:mean(this.waitSamples),p90Wait:percentile(this.waitSamples,.9),
+      discharged:c.discharged,dischargedLastHour:recentDischarges,stale,
+      counts:c,arrivalRate:this.arrivalRate(),
+      averageJourney:mean(this.completedTimes),
+    };
+  }
+  record(force=false) {
+    if(!force && this.time%10!==0)return;
+    const s=this.getSnapshot();
+    this.history.push({minute:this.time,queue:s.queue,wait:s.meanWait,active:s.active,
+      bed:s.bedOccupancy,critical:s.critical,arrivals:s.arrivals,discharged:s.discharged});
+    if(this.history.length>180)this.history.shift();
+  }
+  recentPatients(n=9) {
+    return this.patients.filter(p=>p.status!=='discharged').slice(-Math.max(n*5,35))
+      .sort((a,b)=>a.severity-b.severity||b.arrived-a.arrived).slice(0,n);
+  }
+}
+
+function simulate(config, minutes=480, warmup=90) {
+  const twin=new HospitalTwin(config);
+  if(warmup>0)twin.step(warmup);
+  const prior=twin.getSnapshot();
+  const waitsBefore=twin.waitSamples.length;
+  const discBefore=twin.dischargeCount;
+  twin.step(minutes);
+  const s=twin.getSnapshot();
+  const freshWaits=twin.waitSamples.slice(waitsBefore);
+  const periodHistory=twin.history.filter(h=>h.minute>=warmup);
+  const timeAtRisk=periodHistory.length?mean(periodHistory.map(h=>h.queue)):s.queue;
+  return {snapshot:s,meanWait:mean(freshWaits),p90Wait:percentile(freshWaits,.9),
+    discharges:twin.dischargeCount-discBefore,meanQueue:timeAtRisk,
+    lastQueue: s.queue,critical:s.critical,
+    history:periodHistory,config:{...twin.config},warmup,minutes,
+    baselineAtStart:prior};
+}
+
+
+/**
+ * Exhaustive and reproducible bounded resource allocation search.
+ * Fixed number of float staff; no net staffing increase between candidate allocations.
+ * Score = time-to-care + queue risk + throughput penalty; NOT a clinical safety objective.
+ */
+function optimizeStaff(config, options={}) {
+  const {minutes=360,warmup=90,flexStaff=3}=options;
+  const baseline=simulate(config,minutes,warmup);
+  const results=[];
+  for(let toTriage=0;toTriage<=flexStaff;toTriage++) {
+    const toDoctors=flexStaff-toTriage;
+    const candidate={...config,nurses:config.nurses+toTriage,physicians:config.physicians+toDoctors};
+    const result=simulate(candidate,minutes,warmup);
+    const score=result.meanWait + .8*result.meanQueue + 40/(1+result.discharges/50);
+    results.push({toTriage,toDoctors,score,...result});
+  }
+  results.sort((a,b)=>a.score-b.score || a.toTriage-b.toTriage);
+  return {baseline,best:results[0],candidates:results,minutes,warmup,flexStaff};
+}
+function percentChange(from,to) {
+  return from===0 ? 0 : (to-from)/from*100;
+}
+
+/** Linear harmonic regression fitted on SYNTHETIC hourly arrivals. */
+function features(hour,weekday) {
+  return [1,Math.sin(2*Math.PI*hour/24),Math.cos(2*Math.PI*hour/24),
+    Math.sin(4*Math.PI*hour/24),Math.cos(4*Math.PI*hour/24),weekday>=5?1:0];
+}
+function predictHour(model,hour,weekday=1,scale=1) {
+  const f=features(((hour%24)+24)%24,weekday);
+  return Math.max(1,f.reduce((sum,x,i)=>sum+x*model.weights[i],0)*scale);
+}
+function forecastSeries(model,config,startHour=8,weekday=1,horizon=24) {
+  return Array.from({length:horizon},(_,i)=>{
+    const hour=(startHour+i)%24;
+    return {hour,label:`${String(hour).padStart(2,'0')}:00`,
+      predicted:predictHour(model,hour,(weekday+Math.floor((startHour+i)/24))%7,
+      (config.arrivalsPerHour/17)*config.surge)};
+  });
+}
+
+/** Responsive inline SVG charts: no CDN, no charting dependency. */
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+function makePath(items,xScale,yScale,key) {
+  return items.map((d,i)=>`${i===0?'M':'L'}${xScale(i).toFixed(2)},${yScale(d[key]||0).toFixed(2)}`).join(' ');
+}
+function lineChart(series,{label='',secondary=null,color='#5be0c6',secondaryColor='#aa94fa',height=250,unit='',axisLabels=null}={}) {
+  const w=900,h=height,L=43,R=16,T=13,B=35;
+  if(!series.length)return `<div class="empty-visual">Waiting for simulation observations…</div>`;
+  const values=series.flatMap(d=>[Number(d.value)||0,...(secondary?[Number(d.secondary)||0]:[])]);
+  const maxVal=Math.max(1,Math.ceil(Math.max(...values)*1.19));
+  const span=w-L-R;
+  const xx=i=>L+span*(series.length===1?.5:i/(series.length-1));
+  const yy=v=>T+(h-T-B)*(1-v/maxVal);
+  const p=makePath(series,xx,yy,'value');
+  const second=secondary?makePath(series,xx,yy,'secondary'):'';
+  const grid=Array.from({length:5},(_,i)=>{
+    const val=maxVal*(4-i)/4,y=yy(val);
+    return `<line x1="${L}" x2="${w-R}" y1="${y}" y2="${y}" stroke="#30415a" stroke-opacity=".62" stroke-dasharray="3 6"/><text x="${L-12}" y="${y+4}" text-anchor="end" font-size="10" fill="#7890a9">${Number(val.toFixed(0))}${i===0&&unit==='%'?'%':''}</text>`;
+  }).join('');
+  const ticks=Array.from({length:6},(_,i)=>{
+    const idx=Math.floor(i*(series.length-1)/5), item=series[idx];
+    let tick=axisLabels?axisLabels(item,idx):`${Math.round((idx+1)*10/60)}h`;
+    return `<text x="${xx(idx)}" y="${h-9}" text-anchor="middle" font-size="10" fill="#8196b0">${esc(tick)}</text>`;
+  }).join('');
+  const area=`${p} L${xx(series.length-1)},${h-B} L${xx(0)},${h-B} Z`;
+  const last=series.length-1;
+  return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}"><defs><linearGradient id="chartArea${secondary?'double':''}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${color}" stop-opacity=".23"/><stop offset="100%" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>${grid}<path d="${area}" fill="url(#chartArea${secondary?'double':''})"/><path d="${p}" stroke="${color}" stroke-width="2.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>${secondary?`<path d="${second}" stroke="${secondaryColor}" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`:''}<circle cx="${xx(last)}" cy="${yy(series[last].value||0)}" r="4" stroke="#0e1929" stroke-width="2" fill="${color}"/>${secondary?`<circle cx="${xx(last)}" cy="${yy(series[last].secondary||0)}" r="4" stroke="#0e1929" stroke-width="2" fill="${secondaryColor}"/>`:''}${ticks}</svg>`;
+}
+const zone=(x,y,label,num,caption,accent,count)=>{
+ const dotCount=Math.min(9,Math.max(0,count||0));
+ const dots=Array.from({length:dotCount},(_,i)=>{
+  const cx=x+20+(i%5)*20,cy=y+113+Math.floor(i/5)*15;
+  return `<circle class="map-zone-dot" cx="${cx}" cy="${cy}" r="3.1" fill="${accent}" style="animation-delay:${i*120}ms"/>`;
+ }).join('');
+ return `<g><rect class="map-zone-card" x="${x}" y="${y}" rx="10" width="178" height="148"/><path d="M${x+15} ${y+18}h17" stroke="${accent}" stroke-width="3" stroke-linecap="round"/><text class="map-zone-label" x="${x+16}" y="${y+42}">${esc(label)}</text><text class="map-zone-value" x="${x+16}" y="${y+76}">${num}</text><text class="map-zone-caption" x="${x+16}" y="${y+94}">${esc(caption)}</text>${dots}</g>`;
+};
+function floorMap(snapshot,config){
+ const c=snapshot.counts;
+ const stages=[
+  zone(14,46,'ARRIVALS',snapshot.arrivalsLastHour,'past 60 minutes','#75bcfa',snapshot.arrivalsLastHour),
+  zone(245,46,'TRIAGE',c.triageQueue+c.triage,`${c.triageQueue} waiting · ${c.triage} being seen`,'#5be0c6',c.triageQueue+c.triage),
+  zone(476,46,'TREATMENT',c.careQueue+c.care,`${c.careQueue} waiting · ${c.care} in care`,'#aa94fa',c.careQueue+c.care),
+  zone(707,46,'OBSERVATION',c.observation,`simulated holding area`,'#ffb773',c.observation),
+  zone(938,46,'DISCHARGED',c.discharged,`cumulative exits`,'#5be0c6',Math.min(9,c.discharged))
+ ];
+ const pathways=[[192,245],[423,476],[654,707],[885,938]];
+ const lines=pathways.map(([a,b])=>`<path class="map-zone-line" d="M${a} 119H${b}"/><path class="map-zone-track" d="M${a} 119H${b}"/><path d="m${b-8} 114 8 5-8 5" stroke="#55738e" stroke-width="2" fill="none"/>`).join('');
+ return `<svg viewBox="0 0 1130 338" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Department flow with ${snapshot.active} active patients and ${snapshot.queue} in queues"><defs><radialGradient id="icuFade"><stop stop-color="#20454d"/><stop offset="100%" stop-color="#162438"/></radialGradient></defs><text x="14" y="21" font-size="10" font-weight="700" fill="#7392a9" letter-spacing="1.5">VIRTUAL FACILITY • ED ZONE MAP</text>${lines}${stages.join('')}<path class="map-zone-line" d="M565 195V229H685"/><path class="map-zone-track" d="M565 195V229H685"/><path d="m678 224 8 5-8 5" fill="none" stroke="#597c89" stroke-width="2"/><rect x="692" y="217" rx="10" width="235" height="100" fill="url(#icuFade)" stroke="#32616b"/><rect x="711" y="236" width="6" height="6" rx="3" fill="#fb8e9d"/><text x="724" y="243" font-size="10" fill="#e5effa" font-weight="760" letter-spacing="1">CRITICAL / ICU</text><text x="711" y="282" font-size="28" fill="#fff" font-weight="800">${c.icu} <tspan font-size="12" fill="#94b5c2">/ ${config.icuBeds} beds</tspan></text><text x="711" y="301" font-size="9" fill="#91adbb">${c.icuQueue} awaiting ICU placement</text><g transform="translate(12,246)"><circle cx="8" cy="8" r="5" fill="#fd778a"/><text x="24" y="12" font-size="10" fill="#93a9c1">P1–P2 high acuity in system</text><text x="255" y="12" font-size="12" fill="#fb9cab" font-weight="800">${snapshot.critical}</text><circle cx="8" cy="32" r="5" fill="#5be0c6"/><text x="24" y="36" font-size="10" fill="#93a9c1">ICU bed use</text><text x="255" y="36" font-size="12" fill="#a8fff0" font-weight="800">${snapshot.icuOccupancy}%</text></g></svg>`;
+}
+
+/**
+ * Visual facility twin. Pure SVG + browser DOM: no Python runtime, canvas library,
+ * cloud dependency or external patient data. Every dot is a real simulator patient.
+ */
+const $ = id => document.getElementById(id);
+const SVG = 'http://www.w3.org/2000/svg';
+const stageNames = {
+  triageQueue: 'Triage waiting', triage:'Under triage', careQueue:'Treatment waiting',
+  care:'ED treatment', observation:'Observation', icuQueue:'ICU waiting', icu:'Critical care', discharged:'Discharged'
+};
+const colors = {1:'#ff607b',2:'#ff9678',3:'#ffce70',4:'#5ddcce',5:'#74aefc'};
+const stages = ['triageQueue','triage','careQueue','care','observation','icuQueue','icu'];
+let selectedId = null, selectedStage = 'all', onlyCritical = false;
+let notifySelection = ()=>{};
+
+const bed=(x,y,{critical=false}={})=>`<g transform="translate(${x} ${y})" class="visual-bed"><rect width="63" height="37" rx="7" fill="#14283e" stroke="${critical?'#77596c':'#49627c'}" stroke-width="1.3"/><rect x="7" y="4" width="49" height="29" rx="5" fill="${critical?'#214059':'#25445b'}"/><rect x="11" y="8" width="18" height="19" rx="4" fill="#b6d0da" opacity=".8"/><rect x="32" y="8" width="21" height="19" rx="4" fill="${critical?'#dc8e9e':'#549aab'}" opacity=".43"/><circle cx="58" cy="3" r="3" fill="${critical?'#ff778c':'#5ee1cd'}"/></g>`;
+const chair=(x,y)=>`<g transform="translate(${x} ${y})"><rect width="18" height="18" rx="5" fill="#304e66" stroke="#7796a7" stroke-width="1"/><path d="M4 17H14M4 3h10" stroke="#a5c8d0" stroke-width="2"/></g>`;
+const device=(x,y)=>`<g transform="translate(${x} ${y})"><rect width="32" height="24" rx="4" fill="#172c41" stroke="#56748d"/><path d="M5 12h5l3-6 4 13 4-8h6" stroke="#6cf1d3" stroke-width="1.5" fill="none"/><circle cx="26" cy="5" r="2" fill="#f29a76"/></g>`;
+const room=(x,y,w,h,label,detail,accent,key)=>`<g class="visual-room visual-room-${key}" data-room="${key}"><rect x="${x+8}" y="${y+11}" width="${w}" height="${h}" rx="10" fill="#020916" opacity=".7"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" fill="#152740" stroke="#48617b" stroke-width="3"/><rect x="${x+3}" y="${y+3}" width="${w-6}" height="7" rx="3" fill="#87b3c8" opacity=".25"/><rect x="${x+16}" y="${y+18}" width="5" height="35" rx="2" fill="${accent}"/><text x="${x+33}" y="${y+34}" class="visual-room-title">${label}</text><text x="${x+33}" y="${y+52}" class="visual-room-sub">${detail}</text><rect x="${x+w-69}" y="${y+17}" rx="11" width="51" height="24" fill="#23384e" stroke="#4b627b"/><text id="visual-count-${key}" x="${x+w-43.5}" y="${y+34}" text-anchor="middle" class="visual-room-count">0</text></g>`;
+const iconPerson=(x,y)=>`<g transform="translate(${x} ${y})"><circle r="11" fill="#29485e" stroke="#81a4b8"/><circle cx="0" cy="-3" r="3.6" fill="#add6db"/><path d="M-6 6Q0 -3 6 6" fill="#add6db"/></g>`;
+
+function initTwinView({onSelect}={}) {
+  notifySelection = onSelect || notifySelection;
+  const host = $('facilityScene');
+  if(!host)return;
+  const roomMarkup = [
+    room(68,72,255,257,'RECEPTION','Arrival & registration','#71baf9','arrival'),
+    room(337,72,332,257,'TRIAGE','Rapid assessment','#65ead1','triage'),
+    room(684,72,658,257,'ED TREATMENT','Clinical care bays','#a999ff','care'),
+    room(68,462,303,246,'WAITING AREA','Awaiting triage','#f6b66e','triageQueue'),
+    room(385,462,444,246,'OBSERVATION','Post-treatment monitoring','#6ac9f0','observation'),
+    room(844,462,498,246,'CRITICAL CARE / ICU','High-acuity unit','#ff8294','icu')
+  ].join('');
+  const furniture = [
+    `<g opacity=".95"><rect x="123" y="205" width="135" height="30" rx="9" fill="#386580" stroke="#7ca8c1"/><rect x="128" y="212" width="48" height="16" rx="4" fill="#1b3044"/><rect x="197" y="212" width="25" height="16" rx="3" fill="#a6ccdf"/><circle cx="272" cy="218" r="9" fill="#54ebc7" opacity=".28"/><path d="M268 218h8M272 214v8" stroke="#66ecc9" stroke-width="2"/></g>`,
+    ...[0,1,2].map(i=>`<g>${chair(103+i*64,555)}${chair(103+i*64,653)}</g>`),
+    ...[0,1,2,3].map(i=>chair(103+i*60,607)),
+    ...[0,1,2,3].map(i=>bed(367+(i%2)*151,198+Math.floor(i/2)*62)),
+    ...[0,1,2,3,4,5,6,7,8,9].map(i=>bed(730+(i%5)*114,163+Math.floor(i/5)*75)),
+    ...[0,1,2,3,4,5].map(i=>bed(432+(i%3)*124,571+Math.floor(i/3)*70)),
+    ...[0,1,2,3,4,5,6,7].map(i=>bed(894+(i%4)*106,555+Math.floor(i/4)*73,{critical:true})),
+    device(1282,135),device(1282,550),device(779,545),
+    `<g stroke="#3e6580" stroke-width="3"><path d="M331 359v77M669 359v77M1008 359v77" stroke-dasharray="8 11" opacity=".8"/></g>`,
+    `<g transform="translate(450 375)"><rect width="385" height="54" rx="14" fill="#1c354b" stroke="#496780"/><text x="193" y="21" text-anchor="middle" fill="#aac8dc" font-size="13" letter-spacing="2" font-weight="750">PATIENT TRANSFER CORRIDOR</text><path d="M65 37h245m-12-8 12 8-12 8" stroke="#4dd8ca" stroke-width="3" stroke-linecap="round" stroke-dasharray="9 10" opacity=".75" fill="none"/></g>`,
+    `<g transform="translate(1034 382)"><rect width="254" height="43" rx="9" fill="#28364d" stroke="#72526a"/><text x="127" y="18" text-anchor="middle" fill="#ffaabb" font-size="12" font-weight="800">ICU TRANSFER</text><text x="127" y="32" text-anchor="middle" fill="#ad859c" font-size="10">high-acuity priority route</text></g>`,
+    `<g transform="translate(90 385)"><rect width="230" height="46" rx="9" fill="#1a4851" stroke="#428575"/><text x="115" y="19" text-anchor="middle" fill="#9cf9df" font-size="12" font-weight="800">ED ENTRANCE</text><text x="115" y="33" text-anchor="middle" fill="#b5d1d7" font-size="9.5">synthetic patient intake</text></g>`
+  ].join('');
+  const svg=`<svg viewBox="0 0 1410 770" xmlns="http://www.w3.org/2000/svg" id="twinFloorSVG" role="group" aria-label="Interactive live simulated hospital floor; click patient markers to inspect" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <pattern id="floorGrid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#294154" stroke-width=".8" opacity=".28"/></pattern>
+    <linearGradient id="floorGrad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102438"/><stop offset="1" stop-color="#0b1c31"/></linearGradient>
+    <filter id="roomShadow"><feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#040b17" flood-opacity=".85"/></filter>
+  </defs>
+  <rect width="1410" height="770" rx="18" fill="#091626"/>
+  <rect x="35" y="45" width="1340" height="701" rx="18" fill="url(#floorGrad)" stroke="#375672" stroke-width="4"/>
+  <rect x="43" y="53" width="1324" height="685" rx="11" fill="url(#floorGrid)"/>
+  <g filter="url(#roomShadow)">${roomMarkup}</g>
+  ${furniture}
+  <g id="patientAgents"></g>
+  <g transform="translate(58,25)"><circle r="4" cx="0" cy="0" fill="#5ee1ce" class="visual-ping"/><text x="13" y="4" font-size="11" fill="#92d6c9" font-weight="800" letter-spacing="1.5">FACILITY LINK ACTIVE</text></g>
+  <text x="1345" y="756" text-anchor="end" fill="#526e88" font-size="10" font-weight="600" letter-spacing="1">MODEL SPACE • NOT TO SCALE</text>
+</svg>`;
+  host.innerHTML = svg;
+  host.addEventListener('click',event=>{
+    const agent=event.target.closest('[data-patient]');
+    if(agent){selectedId=Number(agent.dataset.patient); notifySelection(selectedId);return;}
+    const region=event.target.closest('[data-room]');
+    if(region){setRoomFocus(region.dataset.room==='arrival'?'all':region.dataset.room);notifySelection(selectedId);}
+  });
+}
+
+function setRoomFocus(stage){selectedStage=selectedStage===stage?'all':stage;const label=$('focusRegionLabel');if(label)label.textContent=selectedStage==='all'?'ALL DEPARTMENTS':(stageNames[selectedStage]||selectedStage).toUpperCase();}
+function setCriticalFilter(value){onlyCritical=Boolean(value);return onlyCritical;}
+function focusPatient(id){selectedId=id;notifySelection(id);}
+function getPatientFocus(){return selectedId;}
+function clearRoomFocus(){setRoomFocus('all');}
+
+// Stable per-patient positions, designed to reflect stage without suggesting real location precision.
+const zones={
+  triageQueue:{x:99,y:552,columns:8,dx:32,dy:32,capacity:38},
+  triage:{x:372,y:144,columns:9,dx:32,dy:32,capacity:48},
+  careQueue:{x:817,y:402,columns:9,dx:32,dy:27,capacity:18},
+  care:{x:729,y:151,columns:14,dx:39,dy:39,capacity:84},
+  observation:{x:424,y:557,columns:11,dx:32,dy:31,capacity:52},
+  icuQueue:{x:905,y:402,columns:7,dx:32,dy:28,capacity:10},
+  icu:{x:888,y:548,columns:13,dx:31,dy:33,capacity:55}
+};
+function createAgent(p){
+  const agent=document.createElementNS(SVG,'g');agent.setAttribute('class','patient-agent');agent.dataset.patient=String(p.id);
+  agent.innerHTML=`<circle class="agent-aura" r="15" fill="none" stroke-width="2"/><circle class="agent-base" r="10.8" stroke="#071726" stroke-width="2.5"/><circle cy="-3.6" r="3.2" fill="#081b2b"/><path d="M-5 6Q0 -1 5 6" fill="#081b2b"/><circle class="agent-selected" r="19" fill="none" stroke="#fff" stroke-width="1.6" stroke-dasharray="3 4"/><title>Patient #${p.id}, acuity P${p.severity}</title>`;
+  $('patientAgents').append(agent);return agent;
+}
+function updatePanelPatient(twin){
+  const patient=twin.patients.find(p=>p.id===selectedId && p.status!=='discharged');
+  const host=$('patientInspector');if(!host)return;
+  if(!patient){
+    host.innerHTML='<div class="inspector-empty"><div class="inspector-empty-icon">✳</div><h3>Select a patient on the floor</h3><p>Click any glowing patient marker to inspect their current simulated state and care journey.</p></div>';
+    return;
+  }
+  const stage=stageNames[patient.status]||patient.status;
+  const history=patient.journey||[{stage:'triageQueue',minute:patient.arrived}];
+  const entries=history.slice().reverse().map((h,i)=>`<div class="journey-event ${i===0?'now':''}"><span class="journey-rail"></span><div><strong>${stageNames[h.stage]||h.stage}</strong><small>Simulation minute ${h.minute} · ${Math.max(0,twin.time-h.minute)} min ago</small></div></div>`).join('');
+  const elapsed=twin.time-patient.arrived;
+  host.innerHTML=`
+   <div class="inspector-title"><span class="inspector-icon" style="border-color:${colors[patient.severity]};color:${colors[patient.severity]}">✚</span><div><span class="panel-kicker">SELECTED SYNTHETIC PATIENT</span><h3>Patient #${patient.id}</h3></div><span class="inspector-priority" style="color:${colors[patient.severity]}">P${patient.severity}</span></div>
+   <div class="inspector-current"><small>CURRENT LOCATION</small><strong>${stage}</strong><span class="inspector-online"><span class="status-dot"></span>SIMULATION STATE LINKED</span></div>
+   <div class="inspector-metrics"><div><small>In system</small><strong>${elapsed} min</strong></div><div><small>Service remaining</small><strong>${patient.remaining>0?patient.remaining+' min':'Queued'}</strong></div><div><small>Triage started</small><strong>${patient.triageAt??'—'}</strong></div><div><small>Care started</small><strong>${patient.careAt??'—'}</strong></div></div>
+   <div class="inspector-journey"><div class="inspector-journey-head">PATIENT JOURNEY <span>${history.length} TRANSITIONS</span></div>${entries}</div>
+   <div class="inspector-disclaimer">Illustrative identity and acuity. No real patient information, vitals, or clinical assessment.</div>`;
+}
+function updateTwinView(twin) {
+  const svg=$('twinFloorSVG');if(!svg)return;
+  const snap=twin.getSnapshot();
+  const set=(id,txt)=>{const e=$(id);if(e)e.textContent=txt;};
+  set('visual-count-arrival',snap.arrivalsLastHour);set('visual-count-triage',snap.counts.triage);set('visual-count-care',snap.counts.care);
+  set('visual-count-triageQueue',snap.counts.triageQueue);set('visual-count-observation',snap.counts.observation);set('visual-count-icu',snap.counts.icu);
+  set('twinCensus',snap.active);set('twinWaiting',snap.queue);set('twinIcu',snap.icuOccupancy+'%');set('twinExited',snap.discharged);
+  set('twinClock',`DAY ${1+Math.floor((480+twin.time)/1440)} · ${String(Math.floor((480+twin.time)/60)%24).padStart(2,'0')}:${String((480+twin.time)%60).padStart(2,'0')}`);
+  const counts={};for(const k of stages)counts[k]=0;
+  const visible=new Set();
+  const patients=twin.patients.filter(p=>p.status!=='discharged');
+  if(selectedId!==null&&!patients.some(p=>p.id===selectedId))selectedId=null;
+  for(const p of patients){
+    if(!zones[p.status])continue;
+    const idx=counts[p.status]++;
+    const zone=zones[p.status];
+    if(idx>=zone.capacity)continue; // counts above zone show total; spatial dots are capped for legibility.
+    visible.add(String(p.id));
+    let agent=svg.querySelector(`[data-patient="${p.id}"]`);
+    if(!agent){agent=createAgent(p);agent.style.transform=`translate(192px,396px)`;agent.style.opacity='0';}
+    const x=zone.x+(idx%zone.columns)*zone.dx, y=zone.y+Math.floor(idx/zone.columns)*zone.dy;
+    // Apply on the next paint so newly arrived patients animate from intake.
+    const transform=`translate(${x}px,${y}px)`;
+    requestAnimationFrame(()=>{if(agent.isConnected){agent.style.transform=transform;agent.style.opacity=(onlyCritical&&p.severity>2)||selectedStage!=='all'&&p.status!==selectedStage?'.12':'1';}});
+    agent.setAttribute('aria-label',`Patient ${p.id}, priority ${p.severity}, ${stageNames[p.status]}`);
+    agent.querySelector('.agent-base').setAttribute('fill',colors[p.severity]);
+    agent.querySelector('.agent-aura').setAttribute('stroke',colors[p.severity]);
+    agent.classList.toggle('selected',selectedId===p.id);
+  }
+  for(const agent of svg.querySelectorAll('[data-patient]'))if(!visible.has(agent.dataset.patient))agent.remove();
+  set('visualCountNote', `${visible.size} of ${snap.active} patients visible as avatars${visible.size<snap.active?' · dense areas capped for clarity':''}`);
+  updatePanelPatient(twin);
+  const roomRows=[['TRIAGE',snap.counts.triage,twin.config.nurses,'#5be0c6'],['TREATMENT',snap.counts.care,Math.min(twin.config.physicians,twin.config.treatmentBeds),'#aa94fa'],['ICU',snap.counts.icu,twin.config.icuBeds,'#ff8294']];
+  const capacities=$('capacityRows');if(capacities)capacities.innerHTML=roomRows.map(([name,num,max,color])=>`<div class="capacity-row"><div><span>${name}</span><strong>${num} / ${max}</strong></div><div class="capacity-track"><span style="width:${Math.min(100,num/max*100)}%;background:${color}"></span></div></div>`).join('');
+}
+
+/**
+ * HospitalFlow AI — dependency-free 3D isometric scene renderer.
+ * Physical room coordinates are deliberately illustrative, not measured hospital telemetry.
+ * Geometry is defined in 3D world coordinates and projected with an orbitable camera onto canvas.
+ * This is NOT WebGL/photorealistic Three.js; it works in offline HTML without external assets.
+ */
+const roomDefs = [
+ {id:'arrival',name:'RECEPTION',sub:'Check-in & registration',x:-14,z:-9,w:5.2,d:6.8,color:'#51c2ff',floor:'#193b56'},
+ {id:'triage',name:'TRIAGE',sub:'Rapid assessment',x:-8.2,z:-9,w:7.2,d:6.8,color:'#55e4ca',floor:'#16454f'},
+ {id:'care',name:'ED TREATMENT',sub:'Clinical care bays',x:-.3,z:-9,w:14.3,d:6.8,color:'#bca2ff',floor:'#333858'},
+ {id:'triageQueue',name:'WAITING LOUNGE',sub:'Pre-triage arrivals',x:-14,z:2,w:6.2,d:7,color:'#ffc17a',floor:'#4b3c41'},
+ {id:'observation',name:'OBSERVATION',sub:'Monitored recovery',x:-7.2,z:2,w:9.3,d:7,color:'#68bcf6',floor:'#254661'},
+ {id:'icu',name:'CRITICAL CARE',sub:'ICU & high acuity',x:2.8,z:2,w:11.2,d:7,color:'#ff769d',floor:'#543449'}
+];
+const STAGE_ROOM={triageQueue:'triageQueue',triage:'triage',careQueue:'care',care:'care',observation:'observation',icuQueue:'icu',icu:'icu'};
+const palette={1:'#ff637f',2:'#ff9a77',3:'#ffd16a',4:'#64e2d0',5:'#80bafc'};
+const roomById=Object.fromEntries(roomDefs.map(r=>[r.id,r]));
+const clamp3=(v,a,b)=>Math.max(a,Math.min(b,v));
+function rgba(hex,alpha){const h=hex.replace('#','');return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${alpha})`;}
+function shade(hex,n){const h=hex.replace('#','');return '#'+[0,2,4].map(i=>clamp3(parseInt(h.slice(i,i+2),16)+n,0,255).toString(16).padStart(2,'0')).join('');}
+let canvas,ctx,host,onSelect=()=>{},active=false,sceneTwin=null,filterCritical=false;
+let camera={yaw:.66,pitch:.82,zoom:1,panX:0,panY:14};
+const animation=new Map(), hitTargets=[];
+let mouse={down:false,x:0,y:0,moved:false,hover:null};
+let frame=0,resizeObserver=null,staticItems=[],bedLocations=[];
+function itemBox(x,y,z,w,h,d,color,edge=null,glow=false){return {x,y,z,w,h,d,color,edge,glow};}
+function initGeometry(){
+ staticItems=[];bedLocations=[];
+ const add=(...args)=>staticItems.push(itemBox(...args));
+ // A recognizable cutaway hospital, with low perimeter plinth and differentiated wards.
+ add(-14.65,-.55,-9.65,29.3,.55,19.3,'#245171','#408eb6');
+ add(-14.6,-.75,-9.6,29.2,.20,19.2,'#0d253a');
+ for(const r of roomDefs){
+  add(r.x,.02,r.z,r.w,.10,r.d,r.floor,r.color);
+  add(r.x,.14,r.z,r.w,1.18,.19,shade(r.floor,30),rgba(r.color,.7));
+  add(r.x,.14,r.z,.15,1.12,r.d,shade(r.floor,19));
+  add(r.x+r.w-.14,.14,r.z,.14,.68,r.d,shade(r.floor,7));
+  add(r.x,.12,r.z+r.d-.10,r.w,.17,.10,shade(r.color,-35));
+  add(r.x+.10,1.18,r.z,.2,.12,r.d,shade(r.color,20));
+  // Thin illuminated room boundary gives each ward a readable footprint.
+  add(r.x,.13,r.z+r.d-.12,r.w,.09,.08,r.color);
+ }
+ // Raised corridor with a central transfer lane.
+ add(-14,.025,-1.3,28, .10,2.5,'#263f58','#45758b');
+ for(let i=-12;i<=12;i+=3){add(i,.14,-.08,1.7,.024,.06,'#55d9c8');}
+ // Reception desk / computers.
+ add(-13.45,.15,-5.95,3.9,.73,1.1,'#3b90b3','#83dff1');
+ add(-12.8,.91,-5.67,.9,.68,.16,'#152d4b','#a0eff8');
+ add(-10.95,.91,-5.67,.85,.60,.16,'#152d4b','#a0eff8');
+ // Waiting sofas arranged in rows.
+ for(let i=0;i<3;i++) for(let j=0;j<2;j++){
+   add(-13.4+i*1.9,.16,4.5+j*2.2,1.5,.52,.75,'#63829b','#9bb6cc');
+   add(-13.4+i*1.9,.68,4.55+j*2.2,1.5,.44,.15,'#4e779b');
+ }
+ // Triage assessment pods, treatment beds, observation beds, ICU beds.
+ for(let i=0;i<3;i++) putBed(-7.65+i*2.15,-7.0, '#66d7c5',false,'triage');
+ for(let i=0;i<10;i++)putBed(.28+(i%5)*2.7,-7.55+Math.floor(i/5)*3.7,'#9e91dd',false,'care');
+ for(let i=0;i<6;i++)putBed(-6.5+(i%3)*2.95,3.1+Math.floor(i/3)*3.2,'#66bff0',false,'observation');
+ for(let i=0;i<8;i++)putBed(3.5+(i%4)*2.65,3.0+Math.floor(i/4)*3.25,'#ef8fae',true,'icu');
+ // Equipment towers, monitors, plant and emergency signage.
+ for(const [x,z,c] of [[2,-4.1,'#68e7d1'],[11,-4.1,'#68e7d1'],[-4,7,'#68e7d1'],[12,7,'#ff809c']]){
+  add(x,.15,z,.85,1.15,.6,'#35617e');add(x+.1,1.33,z+.1,.63,.47,.12,'#102b41',c);
+ }
+ for(const [x,z] of [[-13,-8],[-8,-8],[.2,-8],[3,3]]){
+  add(x,.15,z,.42,.88,.42,'#2c9279');add(x-.15,1.03,z-.15,.72,.17,.72,'#3eb78c');
+ }
+ // Exterior arrival canopy and directional blocks.
+ add(-13.9,.13,9.1,6.1,.14,1.4,'#1c5865','#59e0cc');
+}
+function putBed(x,z,tint,critical,roomId){
+ bedLocations.push({x,z,tint,roomId});
+ const add=(...args)=>staticItems.push(itemBox(...args));
+ add(x,.20,z,1.68,.32,2.36,'#a6bfd2','#dbeef5');
+ add(x+.10,.53,z+.1,1.48,.20,2.1,critical?'#8b5e82':'#4d829e');
+ add(x+.15,.75,z+.19,1.35,.12,.47,'#e6f0f6');
+ add(x-.10,.21,z,.12,.83,2.3,tint);
+ add(x+1.67,.20,z,.12,.46,2.3,tint);
+ add(x+1.58,.15,z+1.93,.2,.85,.18,'#244662',tint);
+}
+function project(x,y,z){
+ const {yaw,pitch,zoom,panX,panY}=camera;
+ const cs=Math.cos(yaw),sn=Math.sin(yaw),sp=Math.sin(pitch),cp=Math.cos(pitch);
+ const scale=Math.min(canvas.clientWidth/38,canvas.clientHeight/28)*zoom;
+ return {x:canvas.clientWidth/2+panX+(x*cs-z*sn)*scale,
+         y:canvas.clientHeight*.51+panY+((x*sn+z*cs)*sp-y*cp)*scale,
+         depth:(x*sn+z*cs)*cp+y*sp, scale};
+}
+const point=(a)=>project(a[0],a[1],a[2]);
+function quad(vs,color,stroke=null,alpha=1){
+ const vs2=vs.map(point); ctx.save();ctx.globalAlpha=alpha;ctx.beginPath();vs2.forEach((v,i)=>i?ctx.lineTo(v.x,v.y):ctx.moveTo(v.x,v.y));ctx.closePath();ctx.fillStyle=color;ctx.fill();
+ if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=.65;ctx.stroke();}ctx.restore();
+}
+function boxFaces(b){
+ const {x,y,z,w,h,d}=b,X=x+w,Y=y+h,Z=z+d;
+ const faces=[
+ {normal:[0,1,0],v:[[x,Y,z],[X,Y,z],[X,Y,Z],[x,Y,Z]],fill:shade(b.color,25)},
+ {normal:[1,0,0],v:[[X,y,z],[X,y,Z],[X,Y,Z],[X,Y,z]],fill:shade(b.color,-22)},
+ {normal:[-1,0,0],v:[[x,y,Z],[x,y,z],[x,Y,z],[x,Y,Z]],fill:shade(b.color,-28)},
+ {normal:[0,0,1],v:[[X,y,Z],[x,y,Z],[x,Y,Z],[X,Y,Z]],fill:b.color},
+ {normal:[0,0,-1],v:[[x,y,z],[X,y,z],[X,Y,z],[x,Y,z]],fill:shade(b.color,-13)}
+ ];
+ const view=[Math.sin(camera.yaw)*Math.cos(camera.pitch),Math.sin(camera.pitch),Math.cos(camera.yaw)*Math.cos(camera.pitch)];
+ return faces.filter(f=>f.normal[0]*view[0]+f.normal[1]*view[1]+f.normal[2]*view[2]>.03)
+ .map(f=>({v:f.v,fill:f.fill,edge:b.edge,depth:f.v.reduce((sum,v)=>sum+project(...v).depth,0)/4}));
+}
+function drawLine(p1,p2,color='#385b74',lineWidth=1){const a=point(p1),b=point(p2);ctx.strokeStyle=color;ctx.lineWidth=lineWidth;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+function drawSceneBase(){
+ const w=canvas.clientWidth,h=canvas.clientHeight;
+ const grad=ctx.createLinearGradient(0,0,w,h);grad.addColorStop(0,'#102d46');grad.addColorStop(.5,'#0d1e33');grad.addColorStop(1,'#12192e');ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
+ const glow=ctx.createRadialGradient(w*.48,h*.45,0,w*.48,h*.45,w*.56);glow.addColorStop(0,'#225c6a46');glow.addColorStop(1,'#08122300');ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
+ for(let i=-22;i<=22;i+=2){drawLine([i,-.85,-18],[i,-.85,18],'#5d92ae14',.8);drawLine([-20,-.85,i],[20,-.85,i],'#5d92ae14',.8);}
+ // Ground shadow beneath the model.
+ quad([[-15,-.85,-10],[15,-.85,-10],[15,-.85,10],[-15,-.85,10]],'#071526',null,.58);
+}
+function drawOccupiedBeds(snapshot){
+ const seen={};
+ for(const b of bedLocations){
+  const idx=seen[b.roomId]||0;seen[b.roomId]=idx+1;
+  const occupied=idx<(snapshot.counts[b.roomId]||0);if(!occupied)continue;
+  // Occupancy is read from the twin's active resource state, not a decorative random flag.
+  const c=b.roomId==='icu'?'#ffb1c4':b.roomId==='care'?'#bde6ff':'#83f3dc';
+  quad([[b.x+.18,.87,b.z+.8],[b.x+1.49,.87,b.z+.8],[b.x+1.49,.87,b.z+1.9],[b.x+.18,.87,b.z+1.9]],rgba(c,.78),rgba(c,.90));
+  const center=project(b.x+1.46,1.04,b.z+.35);
+  ctx.save();ctx.shadowColor=c;ctx.shadowBlur=12;ctx.beginPath();ctx.arc(center.x,center.y,3.7,0,Math.PI*2);ctx.fillStyle=c;ctx.fill();ctx.restore();
+ }
+}
+function drawLabels(snapshot){
+ const groups={arrival:snapshot.arrivalsLastHour,triage:snapshot.counts.triage,care:snapshot.counts.care,triageQueue:snapshot.counts.triageQueue,observation:snapshot.counts.observation,icu:snapshot.counts.icu};
+ for(const r of roomDefs){
+  const p=project(r.x+r.w*.15,1.67,r.z+r.d*(r.id==='arrival'?.77:.30));
+  const x=p.x,y=p.y;
+  if(x<-180||x>canvas.clientWidth+100||y<-80||y>canvas.clientHeight+90)continue;
+  ctx.save();ctx.textAlign='left';ctx.font='800 10px system-ui, sans-serif';const tw=ctx.measureText(r.name).width;
+  const pillW=Math.max(125,tw+48);const ph=37;
+  ctx.shadowColor=rgba(r.color,.23);ctx.shadowBlur=12;
+  ctx.fillStyle='rgba(12,30,47,.94)';roundRect(x-3,y-22,pillW,ph,8,true);
+  ctx.shadowBlur=0;ctx.strokeStyle=rgba(r.color,.63);roundRect(x-3,y-22,pillW,ph,8,false,true);
+  ctx.fillStyle=r.color;ctx.fillRect(x+5,y-11,3,16);
+  ctx.fillStyle='#eef8ff';ctx.fillText(r.name,x+16,y-7);
+  ctx.fillStyle='#a2b6ca';ctx.font='9px system-ui,sans-serif';ctx.fillText(r.sub,x+16,y+8);
+  ctx.textAlign='center';ctx.fillStyle=r.color;ctx.font='800 12px system-ui,sans-serif';ctx.fillText(String(groups[r.id]),x+pillW-17,y+1);
+  ctx.restore();
+ }
+}
+function roundRect(x,y,w,h,r,fill=false,stroke=false){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill)ctx.fill();if(stroke)ctx.stroke();}
+function drawPatient(p,position,now){
+ const {x,y,z}=position;
+ const foot=project(x,.26,z),head=project(x,1.17,z),size=clamp3(foot.scale*.22,3.8,8.7);
+ const color=palette[p.severity];
+ ctx.save();
+ ctx.fillStyle='#02091777';ctx.beginPath();ctx.ellipse(foot.x+3,foot.y+2,size*.95,size*.40,0,0,Math.PI*2);ctx.fill();
+ // Walkable 3D patient agent: vertical body from floor to head with sphere-like shaded head.
+ ctx.lineCap='round';ctx.lineWidth=size*.82;ctx.strokeStyle=shade(color,-52);ctx.beginPath();ctx.moveTo(foot.x,foot.y-size*.2);ctx.lineTo(head.x,head.y+size*.60);ctx.stroke();
+ ctx.lineWidth=size*.42;ctx.strokeStyle=color;ctx.beginPath();ctx.moveTo(foot.x,foot.y-size*.2);ctx.lineTo(head.x,head.y+size*.65);ctx.stroke();
+ const halo=ctx.createRadialGradient(head.x-size*.2,head.y-size*.2,0,head.x,head.y,size*2);
+ halo.addColorStop(0,rgba(color,.45));halo.addColorStop(1,rgba(color,0));ctx.fillStyle=halo;ctx.beginPath();ctx.arc(head.x,head.y,size*2,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle=color;ctx.strokeStyle='#12263b';ctx.lineWidth=1.7;ctx.beginPath();ctx.arc(head.x,head.y,size*.82,0,Math.PI*2);ctx.fill();ctx.stroke();
+ ctx.fillStyle='rgba(255,255,255,.62)';ctx.beginPath();ctx.arc(head.x-size*.26,head.y-size*.28,size*.22,0,Math.PI*2);ctx.fill();
+ if(p.id===selected3dId){ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();ctx.arc(head.x,head.y,size*1.75+Math.sin(now/220)*2,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);}
+ if(p.id===mouse.hover||p.id===selected3dId){
+   const txt=`#${p.id} · P${p.severity}`;ctx.font='700 11px system-ui';let width=ctx.measureText(txt).width+18;
+   ctx.fillStyle='#102337';ctx.strokeStyle=color;roundRect(head.x-width/2,head.y-37,width,24,6,true,true);
+   ctx.fillStyle='#eafaff';ctx.fillText(txt,head.x-width/2+9,head.y-21);
+ }
+ hitTargets.push({id:p.id,x:head.x,y:head.y,r:Math.max(13,size*1.65)});
+ ctx.restore();
+}
+let selected3dId=null, cachedPositions=[],initialPositionsReady=false;
+function positionFor(stage,index){
+ const slots={
+  triageQueue:()=>({x:-13.2+(index%4)*1.36,z:3.1+Math.floor(index/4)*.92}),
+  triage:()=>({x:-7.55+(index%5)*1.15,z:-7.65+Math.floor(index/5)*1.1}),
+  careQueue:()=>({x:.65+(index%10)*1.2,z:-1.75+Math.floor(index/10)*.38}),
+  care:()=>({x:.72+(index%9)*1.45,z:-7.05+Math.floor(index/9)*1.14}),
+  observation:()=>({x:-6.35+(index%6)*1.36,z:3.1+Math.floor(index/6)*1.32}),
+  icuQueue:()=>({x:4.0+(index%9)*1.05,z:1.05+Math.floor(index/9)*.43}),
+  icu:()=>({x:3.85+(index%7)*1.31,z:3.45+Math.floor(index/7)*1.18})};
+ const fn=slots[stage];return fn?fn():null;
+}
+function refreshPatientPositions(){
+ if(!sceneTwin)return;
+ const counts={},alive=new Set();cachedPositions=[];
+ for(const p of sceneTwin.patients){
+  if(p.status==='discharged')continue;
+  const index=counts[p.status]||0;counts[p.status]=index+1;
+  const pos=positionFor(p.status,index);
+  if(!pos)continue;
+  alive.add(p.id);
+  let agent=animation.get(p.id);
+  if(!agent){agent={x:initialPositionsReady? -11.0:pos.x,z:initialPositionsReady?10.0:pos.z,tx:pos.x,tz:pos.z};animation.set(p.id,agent);}
+  agent.tx=pos.x;agent.tz=pos.z;
+  cachedPositions.push({p,agent});
+ }
+ initialPositionsReady=true;
+ for(const id of animation.keys())if(!alive.has(id))animation.delete(id);
+ if(selected3dId!==null&&!alive.has(selected3dId))selected3dId=null;
+}
+function drawHeader(s){
+ const w=canvas.clientWidth;
+ ctx.save();ctx.fillStyle='rgba(9,25,41,.85)';roundRect(16,14,Math.min(310,w-32),52,10,true);
+ ctx.fillStyle='#62ecd1';ctx.beginPath();ctx.arc(31,33,4,0,Math.PI*2);ctx.fill();
+ ctx.font='800 11px system-ui';ctx.fillStyle='#edf9ff';ctx.fillText('HOSPITAL DIGITAL TWIN · 3D',45,37);
+ ctx.font='10px system-ui';ctx.fillStyle='#86a9be';ctx.fillText(`SYNTHETIC · ${s.active} PATIENTS · ${s.queue} QUEUED`,28,54);
+ if(sceneTwin?.config?.surge>1){ctx.fillStyle='rgba(116,44,56,.90)';roundRect(w-165,16,150,36,8,true);ctx.font='800 11px system-ui';ctx.fillStyle='#ffc3c9';ctx.fillText('⚡ EMERGENCY SURGE',w-153,38);}
+ ctx.restore();
+}
+function renderFrame(now){
+ frame=requestAnimationFrame(renderFrame);
+ if(!active || !canvas?.isConnected || !sceneTwin)return;
+ if(now - renderFrame.last<27)return;renderFrame.last=now;
+ const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;
+ ctx.clearRect(0,0,w,h);drawSceneBase();
+ const structure=[], bases=[], floors=[];
+ for(const b of staticItems){
+   const dest=b.y<0?bases:(b.y===.02||b.y===.025)?floors:structure;
+   dest.push(...boxFaces(b));
+ }
+ for(const layer of [bases,floors,structure]){
+   layer.sort((a,b)=>a.depth-b.depth);
+   for(const face of layer)quad(face.v,face.fill,face.edge);
+ }
+ drawOccupiedBeds(sceneTwin.getSnapshot());
+ hitTargets.length=0;
+ // Draw patients in camera-depth order, with the same agent IDs as the simulator.
+ const ordered=cachedPositions.map(({p,agent})=>{
+  agent.x+=(agent.tx-agent.x)*.16;agent.z+=(agent.tz-agent.z)*.16;
+  return {p,agent,depth:project(agent.x,.5,agent.z).depth};
+ }).sort((a,b)=>a.depth-b.depth);
+ for(const {p,agent} of ordered){
+  if(filterCritical&&p.severity>2)continue;
+  drawPatient(p,{x:agent.x,y:0,z:agent.z},now);
+ }
+ drawLabels(sceneTwin.getSnapshot());drawHeader(sceneTwin.getSnapshot());
+}
+renderFrame.last=0;
+function resize(){if(!canvas)return;const rect=canvas.getBoundingClientRect();if(!rect.width||!rect.height)return;
+ const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(rect.width*dpr);canvas.height=Math.round(rect.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+function choosePatient(ev){const box=canvas.getBoundingClientRect(),x=ev.clientX-box.left,y=ev.clientY-box.top;
+ const match=hitTargets.slice().reverse().find(p=>Math.hypot(x-p.x,y-p.y)<=p.r);
+ return match?.id??null;
+}
+function setPreset(name){
+ if(name==='top'){camera.yaw=.08;camera.pitch=1.55;camera.zoom=1.05;}
+ else if(name==='side'){camera.yaw=-.65;camera.pitch=.68;camera.zoom=1;}
+ else {camera.yaw=.66;camera.pitch=.82;camera.zoom=1;}
+ camera.panX=0;camera.panY=14;
+ for(const btn of document.querySelectorAll('[data-view3d]'))btn.classList.toggle('active',btn.dataset.view3d===name);
+}
+function initTwin3D({onPatientSelect}={}){
+ host=document.getElementById('twin3dHost');canvas=document.getElementById('twin3dCanvas');if(!canvas||!host)return;
+ ctx=canvas.getContext('2d',{alpha:false});onSelect=onPatientSelect||onSelect;
+ initGeometry();resize();resizeObserver=new ResizeObserver(resize);resizeObserver.observe(canvas);
+ canvas.addEventListener('pointerdown',e=>{mouse.down=true;mouse.moved=false;mouse.x=e.clientX;mouse.y=e.clientY;canvas.setPointerCapture(e.pointerId);});
+ canvas.addEventListener('pointermove',e=>{
+  if(mouse.down){const dx=e.clientX-mouse.x,dy=e.clientY-mouse.y;if(Math.abs(dx)+Math.abs(dy)>1)mouse.moved=true;
+   camera.yaw+=dx*.007;camera.pitch=clamp3(camera.pitch+dy*.005,.35,1.56);mouse.x=e.clientX;mouse.y=e.clientY;
+  } else {mouse.hover=choosePatient(e);canvas.style.cursor=mouse.hover?'pointer':'grab';}
+ });
+ canvas.addEventListener('pointerup',e=>{if(!mouse.moved){const id=choosePatient(e);if(id!==null){selected3dId=id;onSelect(id);}}mouse.down=false;});
+ canvas.addEventListener('pointercancel',()=>{mouse.down=false;});
+ canvas.addEventListener('wheel',e=>{e.preventDefault();camera.zoom=clamp3(camera.zoom*Math.exp(-e.deltaY*.001),.65,2.15);},{passive:false});
+ canvas.addEventListener('keydown',e=>{if(['+','='].includes(e.key)){camera.zoom=clamp3(camera.zoom*1.15,.65,2.15);}if(e.key==='-')camera.zoom=clamp3(camera.zoom/1.15,.65,2.15);});
+ document.querySelectorAll('[data-view3d]').forEach(btn=>btn.addEventListener('click',()=>setPreset(btn.dataset.view3d)));
+ document.getElementById('view3dPlus')?.addEventListener('click',()=>{camera.zoom=clamp3(camera.zoom*1.18,.65,2.15)});
+ document.getElementById('view3dMinus')?.addEventListener('click',()=>{camera.zoom=clamp3(camera.zoom/1.18,.65,2.15)});
+ document.getElementById('view3dReset')?.addEventListener('click',()=>setPreset('iso'));
+ setPreset('iso');if(!frame)frame=requestAnimationFrame(renderFrame);
+}
+function setTwin3DActive(value){active=Boolean(value);if(active)requestAnimationFrame(resize);}
+function updateTwin3D(twin){sceneTwin=twin;refreshPatientPositions();}
+function setTwin3DPatient(id){selected3dId=id;}
+function setTwin3DCriticalFilter(value){filterCritical=Boolean(value);}
+function getTwin3DState(){return {active,patients:cachedPositions.length,camera:{...camera},selected3dId};}
+
+
+
+
+
+
+
+const byId=id=>document.getElementById(id);
+const icon=name=>`<svg class="icon mini"><use href="#i-${name}"/></svg>`;
+const n=(value,places=0)=>Number.isFinite(value)?Number(value).toFixed(places):'—';
+const state={config:{...DEFAULT_CONFIG},twin:new HospitalTwin(),model:null,playing:false,speed:1,metric:'queue',tab:'twin',viewMode:'3d',results:null};
+// A 100-minute warmup makes the command-center view immediately informative.
+state.twin.step(100);
+let ticker=null,lastRender=0,toastTimer=null;
+function toast(message){
+ const el=byId('toast');el.textContent=message;el.classList.add('show');
+ clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2600);
+}
+function changeTab(name){
+ state.tab=name;
+ document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active',el.id===`tab-${name}`));
+ document.querySelectorAll('[data-tab]').forEach(btn=>btn.classList.toggle('active',btn.dataset.tab===name));
+ const labels={twin:'VIRTUAL HOSPITAL',overview:'COMMAND CENTER',scenario:'SCENARIO LAB',model:'FORECAST STUDIO',about:'METHODOLOGY'};
+ byId('breadcrumb').textContent=labels[name];
+ window.scrollTo({top:0,behavior:'instant'});
+ if(name==='scenario'&&!state.results)runScenario();
+ if(name==='model')renderForecast();
+ if(name==='overview'||name==='twin')render();setTwin3DActive(name==='twin'&&state.viewMode==='3d');
+}
+function simTime(minute){
+ const hr=Math.floor((480+minute)/60)%24,mi=(480+minute)%60;
+ return `Day ${1+Math.floor((480+minute)/1440)} · ${String(hr).padStart(2,'0')}:${String(mi).padStart(2,'0')}`;
+}
+function shortTime(minute){const h=Math.floor((480+minute)/60)%24,m=(480+minute)%60;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;}
+function render(){
+ const t=state.twin,s=t.getSnapshot();
+ byId('simClock').textContent=simTime(s.minute);
+ byId('kpiActive').textContent=s.active;
+ byId('kpiWait').textContent=n(s.meanWait,1);
+ byId('kpiQueue').textContent=s.queue;
+ byId('kpiBeds').textContent=s.bedOccupancy;
+ byId('bedProgress').style.width=`${clamp(s.bedOccupancy,0,100)}%`;
+ byId('hospitalMap').innerHTML=floorMap(s,state.config);
+ byId('mapArrivals').textContent=`${s.arrivalsLastHour} ARRIVALS / LAST HR`;
+ renderTrend();renderPatients();renderEvents();updateTwinView(state.twin);updateTwin3D(state.twin);
+ for (const [id,key] of [['twinArrival','arrivalsPerHour'],['twinNurses','nurses'],['twinDoctors','physicians'],['twinBeds','treatmentBeds']]) {const e=byId(id);if(e){e.value=state.config[key];byId(id+'Output').textContent=state.config[key];}}
+}
+function renderTrend(){
+ const key=state.metric;
+ let points=state.twin.history.slice(-19);
+ const arr=points.map(h=>({value:h[key],minute:h.minute}));
+ byId('trendChart').innerHTML=lineChart(arr,{label:`Historical ${key} chart`,color:key==='queue'?'#5be0c6':key==='active'?'#75bcfa':'#aa94fa',axisLabels:d=>shortTime(d.minute),unit:key==='bed'?'%':''});
+ byId('chartLegend').textContent=key==='queue'?'Patients in queues':key==='active'?'Patients in system':'Mean time to clinician (min)';
+}
+const stageLabels={triageQueue:'Waiting for triage',triage:'Triage',careQueue:'Waiting for clinician',care:'Under treatment',icuQueue:'Awaiting ICU',icu:'ICU',observation:'Observation',discharged:'Discharged'};
+function renderPatients(){
+ const patients=state.twin.recentPatients(8);
+ byId('patientRows').innerHTML=patients.length?patients.map(p=>`<tr><td><span class="patient-id">#${p.id}</span></td><td><span class="acuity ${p.severity<=2?'urgent':p.severity===3?'medium':'low'}">P${p.severity}</span></td><td><span class="stage-badge">${stageLabels[p.status]}</span></td><td>${state.twin.time-p.arrived} min</td></tr>`).join(''):'<tr><td colspan="4">No patients in the active system yet.</td></tr>';
+}
+function renderEvents(){
+ const t=state.twin, s=t.getSnapshot();
+ const defaultEvents=[{minute:0,message:'Virtual facility initialized (fixed seed)',type:'system'},{minute:0,message:'Synthetic event stream connected',type:'info'}];
+ const events=[...t.log.slice(0,3),...defaultEvents].slice(0,4);
+ if(s.icuOccupancy>=90)events.unshift({minute:t.time,message:'ICU capacity approaching limit',type:'critical'});
+ else if(s.edQueue>25)events.unshift({minute:t.time,message:'Elevated queue detected in ED',type:'critical'});
+ byId('eventFeed').innerHTML=events.slice(0,4).map(e=>`<div class="event-item"><span class="event-icon ${e.type==='critical'?'critical':''}">${e.type==='critical'?'!':'✓'}</span><div><p>${e.message}</p><small>${shortTime(e.minute)} · ${e.type==='critical'?'High-priority event':'Simulation log'}</small></div></div>`).join('');
+}
+function syncConfig(){
+ for(const [id,key] of [['arrival','arrivalsPerHour'],['nurses','nurses'],['physicians','physicians'],['beds','treatmentBeds']]){
+  const value=Number(byId(`${id}Input`).value);
+  state.config[key]=value;byId(`${id}Output`).textContent=value;
+ }
+ state.twin.config={...state.twin.config,...state.config};
+ state.results=null;
+ render();
+}
+function setMode(surge){
+ state.config.surge=surge;
+ state.twin.config.surge=surge;
+ byId('normalMode').classList.toggle('active',surge===1);
+ byId('surgeMode').classList.toggle('active',surge!==1);
+ byId('scenarioBadge').textContent=surge===1?'NORMAL':'SURGE';
+ state.results=null;
+ byId('twinNormal').classList.toggle('active',surge===1);
+ byId('twinSurge').classList.toggle('active',surge!==1);
+ render();
+ toast(surge>1?'Surge scenario activated: demand ×1.8':'Standard demand restored');
+}
+function setPlaying(playing){
+ state.playing=playing;
+ byId('playText').textContent=playing?'Pause':'Play';
+ byId('twinPlay').textContent=playing?'Ⅱ Pause simulation':'▶ Run simulation';
+ byId('playButton').innerHTML=`${icon(playing?'pause':'play')}<span id="playText">${playing?'Pause':'Play'}</span>`;
+ clearInterval(ticker);ticker=null;
+ if(playing){
+   ticker=setInterval(()=>{
+     state.twin.step(state.speed);
+     render();
+   },850);
+ }
+}
+function reset(){
+ setPlaying(false);
+ state.twin=new HospitalTwin(state.config).step(100);
+ state.results=null;render();toast('Digital twin reset to reproducible initial state');
+}
+function runScenario(){
+ byId('runScenario').disabled=true;
+ byId('runScenario').textContent='Evaluating scenarios…';
+ // Give the busy state one browser frame to paint.
+ window.setTimeout(()=>{
+   try {state.results=optimizeStaff(state.config,{minutes:360,warmup:90,flexStaff:state.config.flexStaff});renderScenario();toast('4 matched-demand candidate scenarios evaluated');}
+   catch(err){console.error(err);toast('Scenario analysis error — check browser console');}
+   finally{byId('runScenario').disabled=false;byId('runScenario').innerHTML=`${icon('beaker')} Run scenario analysis`;}
+ },30);
+}
+function renderScenario(){
+ const r=state.results;if(!r)return;
+ const b=r.baseline,o=r.best;
+ byId('baselineWait').innerHTML=`${n(b.meanWait,1)} <small>min avg wait</small>`;
+ byId('baselineQueue').textContent=n(b.meanQueue,1)+' patients';
+ byId('baselineDone').textContent=String(b.discharges);
+ byId('baselineStaff').textContent=`${state.config.nurses} triage / ${state.config.physicians} ED`;
+ byId('optimizedWait').innerHTML=`${n(o.meanWait,1)} <small>min avg wait</small>`;
+ byId('optimizedQueue').textContent=n(o.meanQueue,1)+' patients';
+ byId('optimizedDone').textContent=String(o.discharges);
+ byId('optimizedStaff').textContent=`+${o.toTriage} triage / +${o.toDoctors} ED`;
+ const percent=percentChange(b.meanWait,o.meanWait);
+ byId('scenarioGain').textContent=(percent>0?'+':'')+n(percent,1)+'%';
+ byId('scenarioGain').style.color=percent<0?'#5be0c6':percent>0?'#fd8b9e':'#9db1c4';
+ byId('gainLabel').textContent='Change in mean time to clinician';
+ byId('recommendation').textContent=`Lowest tested score uses ${o.toTriage} of 3 float staff in triage and ${o.toDoctors} in treatment. ${percent<-.1?'The synthetic mean wait decreases.':percent>.1?'Mean wait increases, but the combined objective chooses this trade-off.':'Simulated mean wait is nearly unchanged.'} Review the full set of candidates below.`;
+ const base=new Map(b.history.map(item=>[item.minute,item.queue]));
+ const points=o.history.filter((_,i)=>i%2===0).map(h=>({minute:h.minute,value:h.queue,secondary:base.get(h.minute)??0}));
+ byId('comparisonChart').innerHTML=lineChart(points,{label:'Mean queue path under optimized versus baseline staffing',color:'#5be0c6',secondary:true,secondaryColor:'#aa94fa',height:275,axisLabels:d=>`${Math.round((d.minute-90)/60)}h`});
+ byId('candidateRows').innerHTML=r.candidates.map((c,i)=>`<tr class="${i===0?'candidate-best':''}"><td><span class="patient-id">${i===0?'★ BEST':'Option '+(i+1)}</span></td><td>+${c.toTriage}</td><td>+${c.toDoctors}</td><td>${n(c.meanWait,1)} min</td><td>${n(c.meanQueue,1)} pts</td><td><strong>${n(c.score,2)}</strong></td></tr>`).join('');
+}
+function renderForecast(){
+ if(!state.model)return;
+ const m=state.model;
+ byId('forecastMae').textContent=n(m.holdout_mae,2);
+ byId('baselineMae').textContent=n(m.constant_baseline_mae,2);
+ const now=(8+Math.floor(state.twin.time/60))%24;
+ const series=forecastSeries(m,state.config,now,1,24);
+ byId('forecastChart').innerHTML=lineChart(series.map(d=>({...d,value:d.predicted})),{label:'Synthetic demand forecast for the next 24 hours',color:'#75bcfa',height:285,axisLabels:d=>d.label});
+}
+function exportSnapshot(){
+ const payload={project:'HospitalFlow AI',version:'3.0.0',generatedAt:new Date().toISOString(),synthetic:true,
+   notice:'Educational simulated observations, not clinical measurements or recommendations',
+   scenario:state.config,simTime:state.twin.time,snapshot:state.twin.getSnapshot(),
+   recentHistory:state.twin.history,analysis:state.results?{baseline:{meanWait:state.results.baseline.meanWait,meanQueue:state.results.baseline.meanQueue},optimized:{toTriage:state.results.best.toTriage,toDoctors:state.results.best.toDoctors,meanWait:state.results.best.meanWait,meanQueue:state.results.best.meanQueue}}:null};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='hospitalflow-synthetic-snapshot.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),500);
+ toast('Synthetic simulation snapshot exported');
+}
+function init(){
+ initTwinView({onSelect:(id)=>{setTwin3DPatient(id);updateTwinView(state.twin);}});
+ initTwin3D({onPatientSelect:(id)=>{focusPatient(id);updateTwinView(state.twin);}});
+ setTwin3DActive(true);
+ for(const [mode,btnId] of [['3d','mode3d'],['2d','mode2d']])byId(btnId).addEventListener('click',()=>{
+    state.viewMode=mode;byId('visualSceneWrap').classList.toggle('mode-3d',mode==='3d');
+    byId('twinViewStatus').textContent=mode==='3d'?'◈ ISOMETRIC 3D / LIVE STATE':'▦ 2D FLOOR PLAN / LIVE STATE';
+    for(const [m,b] of [['3d','mode3d'],['2d','mode2d']]){byId(b).classList.toggle('active',m===mode);byId(b).setAttribute('aria-pressed',String(m===mode));}
+    setTwin3DActive(mode==='3d');render();
+ });
+ byId('twinPlay').addEventListener('click',()=>setPlaying(!state.playing));
+ byId('twinStep').addEventListener('click',()=>{setPlaying(false);state.twin.step(5);render();});
+ byId('twinFastStep').addEventListener('click',()=>{setPlaying(false);state.twin.step(30);render();});
+ byId('twinReset').addEventListener('click',reset);
+ byId('twinNormal').addEventListener('click',()=>setMode(1));
+ byId('twinSurge').addEventListener('click',()=>setMode(1.8));
+ byId('twinGoScenario').addEventListener('click',()=>changeTab('scenario'));
+ byId('criticalOnly').addEventListener('click',e=>{const enabled=e.currentTarget.getAttribute('aria-pressed')!=='true';e.currentTarget.setAttribute('aria-pressed',String(enabled));e.currentTarget.classList.toggle('active',enabled);setCriticalFilter(enabled);setTwin3DCriticalFilter(enabled);render();});
+ byId('floorFullscreen').addEventListener('click',()=>{const panel=byId('visualSceneWrap');if(document.fullscreenElement){document.exitFullscreen?.();}else{panel.requestFullscreen?.();}});
+ for(const [id,other] of [['twinArrival','arrival'],['twinNurses','nurses'],['twinDoctors','physicians'],['twinBeds','beds']]){byId(id).addEventListener('input',e=>{byId(other+'Input').value=e.target.value;byId(other+'Input').dispatchEvent(new Event('input'));});}
+ document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>changeTab(btn.dataset.tab)));
+ document.querySelectorAll('[data-go]').forEach(btn=>btn.addEventListener('click',()=>changeTab(btn.dataset.go)));
+ document.querySelectorAll('[data-metric]').forEach(btn=>btn.addEventListener('click',()=>{
+  state.metric=btn.dataset.metric;
+  document.querySelectorAll('[data-metric]').forEach(b=>b.classList.toggle('selected',b===btn));
+  renderTrend();
+ }));
+ for(const id of ['arrival','nurses','physicians','beds'])byId(`${id}Input`).addEventListener('input',syncConfig);
+ byId('normalMode').addEventListener('click',()=>setMode(1));
+ byId('surgeMode').addEventListener('click',()=>setMode(1.8));
+ byId('playButton').addEventListener('click',()=>setPlaying(!state.playing));
+ byId('resetButton').addEventListener('click',reset);
+ byId('runScenario').addEventListener('click',runScenario);
+ byId('exportSnapshot').addEventListener('click',exportSnapshot);
+ document.querySelectorAll('[data-speed]').forEach(btn=>btn.addEventListener('click',()=>{
+  state.speed=Number(btn.dataset.speed);
+  document.querySelectorAll('[data-speed]').forEach(el=>el.classList.toggle('selected',el===btn));
+ }));
+ window.addEventListener('visibilitychange',()=>{if(document.hidden && state.playing)setPlaying(false)});
+ (window.__forecastModel ? Promise.resolve(window.__forecastModel) : fetch('data/forecast_model.json').then(r=>{if(!r.ok)throw new Error('forecast model not found');return r.json()})).then(model=>{state.model=model;renderForecast()}).catch(e=>{console.warn('Model unavailable:',e);byId('forecastChart').textContent='The local forecast JSON could not be loaded. Please launch using an HTTP server.'});
+ render();
+}
+init();
+</script>
+</body>
+</html>

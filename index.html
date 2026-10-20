@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09111e">
+  <meta name="description" content="HospitalFlow AI — a transparent, interactive synthetic emergency department digital twin with capacity simulations, scenario comparison and resource allocation search.">
+  <title>HospitalFlow AI | Emergency Department Digital Twin</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M2 12h5l3-8 4 16 3-8h5"/></symbol>
+  <symbol id="i-beaker" viewBox="0 0 24 24"><path d="M9 3h6m-5 0v7l-6.5 9.5a2 2 0 0 0 1.7 3h13.6a2 2 0 0 0 1.7-3L14 10V3M7 16h10"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 18V5a3 3 0 0 0-5.6-1.6A4 4 0 0 0 4 10a4 4 0 0 0 0 7 4 4 0 0 0 6.5 3.5A3 3 0 0 0 12 18Zm0 0V5a3 3 0 0 1 5.6-1.6A4 4 0 0 1 20 10a4 4 0 0 1 0 7 4 4 0 0 1-6.5 3.5A3 3 0 0 1 12 18Z"/><path d="M7 8q3 0 3 4M17 8q-3 0-3 4M8 17q2-2 4 1 2-3 4-1"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 21c-2-1.2-5-1.6-9-1V4c4-.7 7 0 9 1.4C14 4 17 3.3 21 4v15c-4-.6-7-.2-9 1Zm0-15.5V21"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16M8 3v8M16 13v8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 12 7-12 7V5Z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 11a9 9 0 1 1 2 6M3 4v7h7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M3 9a14 14 0 0 1 18 0M6 13a9 9 0 0 1 12 0m-9 4a5 5 0 0 1 6 0M12 21h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 5v1"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 20V5m0 11h18v4m0-4v-7a3 3 0 0 0-3-3h-6v10M3 9h9"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="m12 3 10 18H2L12 3Z"/><path d="M12 9v5m0 4h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-9m-6 0h6v6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
+</svg>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="HospitalFlow AI home">
+      <span class="brand-symbol"><svg class="icon"><use href="#i-activity"/></svg></span>
+      <span><strong>HOSPITAL<span class="brand-accent">FLOW</span></strong><small>DIGITAL TWIN ENGINE</small></span>
+    </a>
+    <div class="side-label">WORKSPACE</div>
+    <nav class="nav-list" aria-label="Primary navigation">
+      <button class="nav-btn active" data-tab="twin"><svg class="icon"><use href="#i-activity"/></svg>Visual digital twin<span class="nav-pill">2D + 3D</span></button>
+      <button class="nav-btn" data-tab="overview"><svg class="icon"><use href="#i-grid"/></svg>Command center<span class="nav-pill">LIVE</span></button>
+      <button class="nav-btn" data-tab="scenario"><svg class="icon"><use href="#i-beaker"/></svg>Scenario lab</button>
+      <button class="nav-btn" data-tab="model"><svg class="icon"><use href="#i-brain"/></svg>Forecast studio</button>
+      <button class="nav-btn" data-tab="about"><svg class="icon"><use href="#i-book"/></svg>Methodology</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="system-card"><div class="system-row"><span class="status-dot"></span><span>SIMULATION ONLINE</span></div><div class="system-metadata">Local engine · no external APIs</div><div class="system-line"></div><div class="system-row light"><svg class="icon mini"><use href="#i-shield"/></svg> Synthetic data only</div></div>
+      <div class="side-foot">PROOF OF CONCEPT <span>v3.0.0</span></div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumbs">HEALTHCARE INTELLIGENCE <span>/</span> <span id="breadcrumb">VIRTUAL HOSPITAL</span></div><div class="topbar-right"><span class="time-chip"><svg class="icon mini"><use href="#i-clock"/></svg><span id="simClock">Day 1 · 08:00</span></span><span class="live-chip"><span class="status-dot"></span>SIMULATED LIVE</span><span class="avatar">HF</span></div></header>
+    <div class="page-container">
+      <section class="tab active" id="tab-twin">
+        <div class="twin-hero">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span>INTERACTIVE VIRTUAL FACILITY · DIGITAL TWIN VISUALIZER</div><h1>A hospital you can <span>step inside.</span></h1><p class="lede">Explore a stylized 3D hospital. Orbit the scene, select individual patients, change staffing or arrivals, and watch the synthetic digital twin evolve in simulation time.</p></div>
+          <div class="twin-hero-tag"><span class="status-dot"></span> STATE-SYNCHRONIZED DIGITAL TWIN <small>SIMULATION / NO REAL PATIENT DATA</small></div>
+        </div>
+        <div class="twin-kpi-row">
+          <div class="twin-metric"><span>IN THE FACILITY</span><strong id="twinCensus">—</strong><small>Simulated patient census</small></div>
+          <div class="twin-metric"><span>WAITING FOR CARE</span><strong id="twinWaiting">—</strong><small>Across triage, ED and ICU</small></div>
+          <div class="twin-metric"><span>CRITICAL UNIT USE</span><strong id="twinIcu">—</strong><small>Occupied ICU capacity</small></div>
+          <div class="twin-metric"><span>PATIENTS DISCHARGED</span><strong id="twinExited">—</strong><small>Cumulative during simulation</small></div>
+        </div>
+        <div class="visual-studio">
+          <section class="visual-main">
+            <div class="visual-toolbar">
+              <div class="visual-toolbar-heading"><span class="visual-live-dot"></span><div><strong>VIRTUAL EMERGENCY DEPARTMENT</strong><small>Orbitable 3D & floor plan · individual patient agents</small></div></div>
+              <div class="visual-toolbar-right"><div class="twin-mode-switch" aria-label="Twin display mode"><button id="mode3d" class="active" aria-pressed="true">◈ 3D</button><button id="mode2d" aria-pressed="false">▦ 2D</button></div><span id="twinClock" class="visual-sim-clock">DAY 1 · 09:40</span><button class="visual-icon-btn" id="floorFullscreen" aria-label="Expand digital twin" title="Toggle fullscreen">⛶</button></div>
+            </div>
+            <div class="visual-scene mode-3d" id="visualSceneWrap"><div id="facilityScene" class="facility-scene"></div><div id="twin3dHost" class="twin3d-host"><canvas id="twin3dCanvas" aria-label="Orbitable synthetic 3D hospital. Drag to rotate, scroll to zoom, click patients to inspect." tabindex="0"></canvas><div class="twin3d-controls"><div class="twin3d-camera"><button class="active" data-view3d="iso">◈ Isometric</button><button data-view3d="top">▦ Top</button><button data-view3d="side">◧ Reverse</button></div><div class="twin3d-zoom"><button id="view3dMinus" aria-label="Zoom out">−</button><button id="view3dPlus" aria-label="Zoom in">+</button><button id="view3dReset" aria-label="Reset camera">↺</button></div></div><div class="twin3d-hint">DRAG TO ORBIT · SCROLL TO ZOOM · CLICK A PATIENT</div></div><div class="visual-scene-overlay"><span id="twinViewStatus" class="view-badge">◈ ISOMETRIC 3D / LIVE STATE</span><span class="view-badge right" id="visualCountNote">Patient agents synchronized</span></div></div>
+            <div class="floor-legend"><span><i style="background:#ff607b"></i>Critical P1</span><span><i style="background:#ff9678"></i>High P2</span><span><i style="background:#ffce70"></i>Medium P3</span><span><i style="background:#5ddcce"></i>Low P4</span><span><i style="background:#74aefc"></i>Low P5</span><button id="criticalOnly" class="legend-focus-btn" aria-pressed="false">◎ Highlight critical</button></div>
+            <div class="visual-controls"><div class="play-group"><button class="visual-action primary" id="twinPlay">▶ Run simulation</button><button class="visual-action" id="twinStep">+5 minutes</button><button class="visual-action" id="twinFastStep">+30 minutes</button><button class="visual-action" id="twinReset">↺ Reset</button></div><span class="visual-control-hint">Movement follows actual changes in the patient simulation</span></div>
+          </section>
+          <aside class="visual-inspector">
+            <div class="inspector-head"><div class="panel-kicker">PATIENT TRACE / LIVE STATE</div><h2>Patient inspection</h2></div>
+            <div id="patientInspector" class="patient-inspector"><div class="inspector-empty"><div class="inspector-empty-icon">✳</div><h3>Select a patient on the floor</h3><p>Click any glowing patient marker to inspect their current simulated state and care journey.</p></div></div>
+            <div class="inspector-capacity"><div class="panel-kicker">PHYSICAL RESOURCE CONSTRAINTS</div><h3>Resource occupancy</h3><div id="capacityRows"></div></div>
+          </aside>
+        </div>
+        <div class="twin-lower">
+          <div class="twin-adjustment"><div><div class="panel-kicker">EXPERIMENT IN REAL TIME</div><h2>Change the environment.</h2><p>The simulation reacts immediately. Use surge mode, or adjust the available hospital resources.</p></div><div class="twin-experiment-controls">
+            <div class="twin-control"><label for="twinArrival">Arrivals / hour <output id="twinArrivalOutput">17</output></label><input type="range" id="twinArrival" min="5" max="45" step="1" value="17"></div>
+            <div class="twin-control"><label for="twinNurses">Triage nurses <output id="twinNursesOutput">3</output></label><input type="range" id="twinNurses" min="1" max="12" step="1" value="3"></div>
+            <div class="twin-control"><label for="twinDoctors">ED physicians <output id="twinDoctorsOutput">7</output></label><input type="range" id="twinDoctors" min="1" max="20" step="1" value="7"></div>
+            <div class="twin-control"><label for="twinBeds">Treatment beds <output id="twinBedsOutput">12</output></label><input type="range" id="twinBeds" min="2" max="35" step="1" value="12"></div>
+          </div><div class="twin-action-bar"><button id="twinNormal" class="experiment-mode active">Normal demand</button><button id="twinSurge" class="experiment-mode">⚡ Emergency surge ×1.8</button><button id="twinGoScenario" class="experiment-link">Compare staffing strategies →</button></div></div>
+          <div class="twin-story"><div class="panel-kicker">WHY THIS IS A DIGITAL TWIN</div><h2>The hospital changes because the model changes.</h2><p>Both the interactive 3D hospital and 2D floor plan are connected to the same seeded, minute-resolution patient simulation. Each avatar represents a modeled patient with an acuity, journey, stage, timing, and resource usage—not an animated stock illustration.</p><div class="twin-story-pills"><span>01 · DATA STREAM</span><span>02 · VIRTUAL STATE</span><span>03 · WHAT-IF RUNS</span><span>04 · DECISIONS</span></div><small>Prototype disclaimer: all data and clinical pathways are synthetic. Floor positions illustrate operational stage only, not measured physical coordinates.</small></div>
+        </div>
+      </section>
+      <section class="tab" id="tab-overview">
+        <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-line"></span>EMERGENCY CARE INTELLIGENCE</div><h1>Emergency department <span>command center.</span></h1><p class="lede">A live, continuously updated model of patient flow and resource constraints — all in one control room.</p></div><button class="btn btn-ghost export-btn" id="exportSnapshot"><svg class="icon mini"><use href="#i-download"/></svg>Export snapshot</button></div>
+        <div class="kpi-grid">
+          <article class="kpi-card"><div class="kpi-head"><span>Total patients in system</span><span class="kpi-icon mint"><svg class="icon"><use href="#i-users"/></svg></span></div><div class="kpi-value" id="kpiActive">—</div><div class="kpi-foot"><span class="dot mint-bg"></span>Current simulated census</div></article>
+          <article class="kpi-card"><div class="kpi-head"><span>Mean time to clinician</span><span class="kpi-icon blue"><svg class="icon"><use href="#i-clock"/></svg></span></div><div class="kpi-value"><span id="kpiWait">—</span><em>min</em></div><div class="kpi-foot">Arrival → start of treatment</div></article>
+          <article class="kpi-card"><div class="kpi-head"><span>Patients awaiting care</span><span class="kpi-icon orange"><svg class="icon"><use href="#i-alert"/></svg></span></div><div class="kpi-value" id="kpiQueue">—</div><div class="kpi-foot"><span class="dot orange-bg"></span>Includes triage, care & ICU</div></article>
+          <article class="kpi-card"><div class="kpi-head"><span>ED treatment bed use</span><span class="kpi-icon violet"><svg class="icon"><use href="#i-bed"/></svg></span></div><div class="kpi-value"><span id="kpiBeds">—</span><em>%</em></div><div class="kpi-foot"><div class="mini-progress"><span id="bedProgress"></span></div>Occupied / available beds</div></article>
+        </div>
+        <div class="content-grid">
+          <div class="center-stack">
+            <article class="panel map-panel"><div class="panel-header"><div><div class="panel-kicker">REAL-TIME SYSTEM VIEW</div><h2>Patient journey twin</h2></div><div class="header-right"><span class="map-legend"><span class="dot mint-bg"></span>Flow active</span><span class="map-legend"><span class="dot red-bg"></span>High priority</span></div></div>
+              <div id="hospitalMap" class="hospital-map" role="img" aria-label="Live patient flow across emergency department stages"></div>
+              <div class="map-footer"><span><svg class="icon mini"><use href="#i-wifi"/></svg>Simulated data stream · synchronized every minute</span><strong id="mapArrivals">— ARRIVALS / HR</strong></div></article>
+            <article class="panel trend-panel"><div class="panel-header"><div><div class="panel-kicker">OPERATIONAL MONITORING</div><h2>Patient flow over time</h2></div><div class="segmented" role="group" aria-label="Trend metric"><button data-metric="queue" class="selected">Queue</button><button data-metric="active">Census</button><button data-metric="wait">Wait</button></div></div><div id="trendChart" class="chart-wrap"></div><div class="chart-bottom"><span><i class="legend-line mint-bg"></i><span id="chartLegend">Patients in queue</span></span><span>Last 3 simulation hours</span></div></article>
+            <article class="panel patient-panel"><div class="panel-header"><div><div class="panel-kicker">PATIENT-LEVEL STATE</div><h2>Patient activity monitor</h2></div><span class="badge badge-neutral">SYNTHETIC IDENTITIES</span></div><div class="table-scroll"><table class="patient-table"><thead><tr><th>Patient ID</th><th>Acuity</th><th>Current state</th><th>Time in system</th></tr></thead><tbody id="patientRows"></tbody></table></div></article>
+          </div>
+          <aside class="right-stack">
+            <article class="panel controls-panel"><div class="panel-header compact"><div><div class="panel-kicker">TWIN INPUT PARAMETERS</div><h2>Simulation controls</h2></div><span class="controls-icon"><svg class="icon"><use href="#i-sliders"/></svg></span></div>
+              <div class="config-body"><div class="control-head"><span>ARRIVAL SCENARIO</span><span id="scenarioBadge" class="badge badge-mint">NORMAL</span></div><div class="mode-switch"><button id="normalMode" class="active">Standard</button><button id="surgeMode">Surge ×1.8</button></div>
+              <div class="slider-field"><div class="slider-label"><label for="arrivalInput">Base arrivals per hour</label><output id="arrivalOutput">17</output></div><input id="arrivalInput" type="range" min="5" max="45" value="17" step="1"><div class="slider-ends"><span>5 / hr</span><span>45 / hr</span></div></div>
+              <div class="slider-field"><div class="slider-label"><label for="nursesInput">Triage nurses</label><output id="nursesOutput">3</output></div><input id="nursesInput" type="range" min="1" max="12" value="3" step="1"><div class="slider-ends"><span>1</span><span>12</span></div></div>
+              <div class="slider-field"><div class="slider-label"><label for="physiciansInput">ED physicians</label><output id="physiciansOutput">7</output></div><input id="physiciansInput" type="range" min="1" max="20" value="7" step="1"><div class="slider-ends"><span>1</span><span>20</span></div></div>
+              <div class="slider-field"><div class="slider-label"><label for="bedsInput">Treatment beds</label><output id="bedsOutput">12</output></div><input id="bedsInput" type="range" min="2" max="36" value="12" step="1"><div class="slider-ends"><span>2</span><span>36</span></div></div>
+              <div class="control-divider"></div><div class="control-head"><span>ENGINE CONTROLS</span><span class="engine-time">1 MIN / STEP</span></div><div class="playback"><button id="playButton" class="btn btn-primary"><svg class="icon mini"><use href="#i-play"/></svg><span id="playText">Play</span></button><button id="resetButton" class="btn btn-ghost" title="Restart from fixed seed"><svg class="icon mini"><use href="#i-reset"/></svg>Reset</button></div><div class="speed-row"><span>Playback speed</span><div class="speed-switch"><button class="selected" data-speed="1">1×</button><button data-speed="5">5×</button><button data-speed="15">15×</button></div></div><p class="control-note"><svg class="icon mini"><use href="#i-info"/></svg>Every patient, wait time and resource count is generated by the transparent local simulator.</p></div>
+            </article>
+            <article class="panel event-panel"><div class="panel-header compact"><div><div class="panel-kicker">EVENT STREAM</div><h2>Operations feed</h2></div><span class="pulsing"></span></div><div id="eventFeed" class="event-feed"></div><button class="open-lab" data-go="scenario">Open scenario lab <svg class="icon mini"><use href="#i-arrow"/></svg></button></article>
+            <article class="insight-card"><div class="insight-graphic"><svg class="icon"><use href="#i-brain"/></svg></div><div class="insight-kicker">BUILT FOR WHAT-IF THINKING</div><h3>What happens when demand doubles?</h3><p>Test demand surges and compare staffing allocations with exactly the same random patient arrival stream.</p><button data-go="scenario">Explore interventions <svg class="icon mini"><use href="#i-arrow"/></svg></button></article>
+          </aside>
+        </div>
+      </section>
+      <section class="tab" id="tab-scenario">
+        <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-line"></span>DECISION INTELLIGENCE</div><h1>Explore a better <span>operating strategy.</span></h1><p class="lede">Compare a fixed staffing plan against a constrained resource search using identical synthetic demand.</p></div><span class="pill-title">SAME SEED · FAIR COMPARISON</span></div>
+        <div class="scenario-hero"><div><div class="panel-kicker">THE EXPERIMENT</div><h2>Where should your three float staff go?</h2><p>Our bounded search assigns three additional floating team members between triage and treatment. Every candidate gets exactly three staff, and every run uses the same exogenous arrivals. The optimizer selects the lowest operational score.</p></div><button class="btn btn-primary run-btn" id="runScenario"><svg class="icon mini"><use href="#i-beaker"/></svg>Run scenario analysis</button></div>
+        <div class="compare-grid"><article class="panel compare-card"><div class="compare-head"><span class="compare-mark base"></span><span>BASELINE</span><span class="badge badge-neutral">CURRENT SETUP</span></div><h2 id="baselineWait">— <small>min avg wait</small></h2><div class="compare-detail"><span>Mean queue size</span><strong id="baselineQueue">—</strong></div><div class="compare-detail"><span>Discharges / simulated 6h</span><strong id="baselineDone">—</strong></div><div class="compare-detail"><span>Staff allocation</span><strong id="baselineStaff">—</strong></div></article>
+          <article class="panel compare-card optim"><div class="compare-head"><span class="compare-mark optim"></span><span>CONSTRAINED OPTIMIZATION</span><span class="badge badge-mint">BEST CANDIDATE</span></div><h2 id="optimizedWait">— <small>min avg wait</small></h2><div class="compare-detail"><span>Mean queue size</span><strong id="optimizedQueue">—</strong></div><div class="compare-detail"><span>Discharges / simulated 6h</span><strong id="optimizedDone">—</strong></div><div class="compare-detail"><span>Float staff allocation</span><strong id="optimizedStaff">—</strong></div></article>
+          <article class="compare-summary"><span class="panel-kicker">MODEL-BASED CHANGE</span><span class="large-gain" id="scenarioGain">—</span><strong id="gainLabel">Change in mean time to care</strong><p id="recommendation">Run the comparison to see the lowest-scoring staffing allocation for your selected conditions.</p><div class="mini-disclaimer">Simulated comparison, not a clinical recommendation.</div></article>
+        </div>
+        <article class="panel comparison-chart-panel"><div class="panel-header"><div><div class="panel-kicker">CONTROLLED COUNTERFACTUALS</div><h2>Queue progression: baseline vs optimized allocation</h2></div><div class="compare-legend"><span><i class="legend-line violet-bg"></i>Baseline</span><span><i class="legend-line mint-bg"></i>Optimized</span></div></div><div class="chart-wrap" id="comparisonChart"></div></article>
+        <article class="panel candidate-panel"><div class="panel-header"><div><div class="panel-kicker">SEARCH TRANSPARENCY</div><h2>Every staffing allocation tested</h2></div><span class="badge badge-neutral">EXHAUSTIVE GRID SEARCH</span></div><div class="table-scroll"><table class="patient-table"><thead><tr><th>Allocation</th><th>Triage float staff</th><th>Treatment float staff</th><th>Mean time to care</th><th>Mean queue</th><th>Weighted score</th></tr></thead><tbody id="candidateRows"></tbody></table></div><p class="panel-note">Score = mean time to care + 0.8 × mean total queue + 40 / (1 + discharges / 50). This illustrative objective does not optimize clinical safety, acuity outcomes, or cost.</p></article>
+      </section>
+      <section class="tab" id="tab-model">
+        <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-line"></span>MODEL INTELLIGENCE</div><h1>Demand signals, <span>made interpretable.</span></h1><p class="lede">A lightweight ridge-regression model trained and evaluated entirely on generated synthetic hourly arrival data.</p></div><span class="pill-title">NO PATIENT DATA USED</span></div>
+        <div class="model-stat-grid"><article class="panel model-stat"><span>HOLDOUT MEAN ABSOLUTE ERROR</span><div><strong id="forecastMae">—</strong><em>patients / hr</em></div><small>21-day synthetic holdout</small></article><article class="panel model-stat"><span>CONSTANT-MEAN BASELINE MAE</span><div><strong id="baselineMae">—</strong><em>patients / hr</em></div><small>Comparison on identical test rows</small></article><article class="panel model-stat"><span>TRAINING OBSERVATIONS</span><div><strong>1,848</strong><em>hourly rows</em></div><small>77 synthetic days · fixed seed</small></article></div>
+        <article class="panel forecast-chart-panel"><div class="panel-header"><div><div class="panel-kicker">24-HOUR SCENARIO FORECAST</div><h2>Projected arrivals by hour</h2></div><span class="badge badge-mint">SYNTHETIC REGRESSION</span></div><div id="forecastChart" class="chart-wrap tall"></div><div class="forecast-note"><svg class="icon mini"><use href="#i-info"/></svg>The display scales the fitted synthetic hourly pattern by your base arrival setting and surge multiplier. It does not forecast real hospital demand.</div></article>
+        <div class="method-grid"><article class="panel method-card"><span class="method-num">01</span><h3>Generate</h3><p>98 deterministic synthetic days of hourly arrivals with designed diurnal patterns and Poisson noise. No external hospital dataset is claimed.</p></article><article class="panel method-card"><span class="method-num">02</span><h3>Train</h3><p>Fit six interpretable features: intercept, 24-hour and 12-hour Fourier harmonics, and weekend flag. Use regularized least squares.</p></article><article class="panel method-card"><span class="method-num">03</span><h3>Evaluate</h3><p>Train on days 1–77, evaluate only on days 78–98. Compare holdout MAE against a constant mean. The benchmark is synthetic only.</p></article></div>
+      </section>
+      <section class="tab" id="tab-about">
+        <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-line"></span>TRANSPARENCY & DESIGN</div><h1>Built to simulate. <span>Not to overclaim.</span></h1><p class="lede">A working, reproducible digital twin prototype with explicit assumptions, testable behavior and limitations.</p></div><span class="pill-title">OPEN SOURCE · MIT</span></div>
+        <div class="about-grid"><article class="panel about-feature"><div class="about-icon"><svg class="icon"><use href="#i-activity"/></svg></div><h2>Virtual operational state</h2><p>Individual synthetic patients move through time-stepped ED queues, triage, care, observation, ICU and discharge. Each step updates resource occupancy and time-to-care measures.</p></article><article class="panel about-feature"><div class="about-icon"><svg class="icon"><use href="#i-wifi"/></svg></div><h2>Dynamic synchronization</h2><p>A deterministic pseudo-random synthetic event stream enters the digital twin on every simulated minute. Inputs can change while the model continues running.</p></article><article class="panel about-feature"><div class="about-icon"><svg class="icon"><use href="#i-beaker"/></svg></div><h2>Counterfactual experiments</h2><p>Bounded scenarios compare different allocations of the same float-staff pool. Exogenous arrivals use an independent random stream for consistency between interventions.</p></article><article class="panel about-feature"><div class="about-icon"><svg class="icon"><use href="#i-brain"/></svg></div><h2>AI/ML component</h2><p>The forecast studio loads an actual trained harmonic ridge-regression model, including held-out error estimates. Staffing uses interpretable exhaustive optimization, not a language model.</p></article></div>
+        <article class="panel constraint-panel"><div class="panel-header"><div><div class="panel-kicker">SCIENTIFIC INTEGRITY</div><h2>Assumptions and boundaries</h2></div></div><div class="constraints"><div><svg class="icon"><use href="#i-check"/></svg><span>All arrivals, acuity categories, service times, dispositions and hospital capacities are demonstrative synthetic assumptions.</span></div><div><svg class="icon"><use href="#i-check"/></svg><span>The model is a minute-resolution stochastic queueing simulation; no claims of physical fidelity or validated clinical decision support.</span></div><div><svg class="icon"><use href="#i-check"/></svg><span>Patient-level identities exist only in browser memory; no medical records or external services are accessed.</span></div><div><svg class="icon"><use href="#i-check"/></svg><span>Optimizer outcomes depend on the simulation rules, selected scenario and seed. They do not establish improvements at real hospitals.</span></div><div><svg class="icon"><use href="#i-check"/></svg><span>Production use would require hospital event-log calibration, prospective validation, clinician review, auditability and governance.</span></div></div></article>
+        <div class="footer-callout"><div><div class="eyebrow">HOSPITALFLOW AI</div><h2>Better decisions start with better experiments.</h2><p>An offline-first educational proof of concept. Includes source code, tests, synthetic datasets, model training and submission documents.</p></div><button class="btn btn-primary" data-go="scenario">Try scenario lab <svg class="icon mini"><use href="#i-arrow"/></svg></button></div>
+      </section>
+    </div>
+    <footer class="main-footer"><span>© 2026 HOSPITALFLOW AI · OPEN-SOURCE PROTOTYPE</span><span>DEMONSTRATION ONLY — NOT FOR CLINICAL USE</span></footer>
+  </main>
+</div>
+<div role="status" aria-live="polite" class="toast" id="toast"></div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

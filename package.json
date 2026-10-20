@@ -1,0 +1,13 @@
+{
+  "name": "hospitalflow-ai",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser-native 2D/3D visual emergency department digital twin with synthetic patient agents and scenario optimization",
+  "scripts": {
+    "start": "node scripts/server.cjs",
+    "test": "node --test tests/*.test.js",
+    "train": "python3 scripts/train_forecaster.py"
+  },
+  "license": "MIT"
+}

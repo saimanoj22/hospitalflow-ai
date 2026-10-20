@@ -1,0 +1,28 @@
+{
+  "name": "Synthetic ED arrival forecaster",
+  "type": "Ridge regression with hourly Fourier features",
+  "training_data": "Deterministic generated synthetic hourly counts \u2014 not hospital data",
+  "seed": 34071,
+  "training_days": 77,
+  "test_days": 21,
+  "features": [
+    "intercept",
+    "sin24",
+    "cos24",
+    "sin12",
+    "cos12",
+    "is_weekend"
+  ],
+  "weights": [
+    16.9103687,
+    1.1794937,
+    -3.2800567,
+    -1.107344,
+    2.0664453,
+    -2.3283358
+  ],
+  "holdout_mae": 3.215,
+  "constant_baseline_mae": 4.138,
+  "holdout_rmse": 4.069,
+  "limitation": "Educational synthetic-data benchmark. Results cannot infer real ED volumes, accuracy, or clinical outcomes."
+}
