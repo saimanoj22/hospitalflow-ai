@@ -13,7 +13,7 @@
 | **Project title** | HospitalFlow AI: Emergency Department Flow Digital Twin |
 | **Team name** | `sai.manoj.260101103 (SynapseX)` |
 | **Team members** | `Etcherla Sai Manoj` `Parameswara Meena Peddakotla` `Madhavaneni Vivek Rao` `Valivarthi Bhargava Varma` |
-| **College / incubator** | `IIM Mumbai` |
+| **College** | `IIM Mumbai` |
 
 ## Problem statement
 
@@ -128,25 +128,23 @@ The simulator uses separate pseudo-random streams for arrivals, patient acuity, 
 
 See [`docs/VALIDATION.md`](docs/VALIDATION.md) for deterministic output examples, threats to validity and test coverage. Automated tests cover deterministic replay, population conservation, resource limits, matched arrival and acuity streams, surge sensitivity, valid resource allocations and numeric integrity.
 
-## Required competition deliverables
+## Project Resources
 
-| Submission item | Status / link |
+
+## Project Resources
+
+| Resource | Link |
 |---|---|
-| Public GitHub repository | **[ADD PUBLIC REPO URL AFTER UPLOAD]** |
-| Team details | **[FILL TABLE ABOVE]** |
-| College/incubator | **[FILL TABLE ABOVE]** |
-| Project title | Included above |
-| Problem statement | Included above |
-| Healthcare use case | Included above |
-| Technical stack | Included above |
-| AI/ML model/framework | Included above |
-| Demo video (15–20 min; YouTube Unlisted) | **[ADD ACTUAL UNLISTED YOUTUBE URL]** |
-| Open-source license | [`LICENSE`](LICENSE) — MIT |
-| Architecture PDF | [`docs/ARCHITECTURE.pdf`](docs/ARCHITECTURE.pdf) |
-| Presentation PPTX/PDF | [`docs/PRESENTATION.pptx`](docs/PRESENTATION.pptx) / [`docs/PRESENTATION.pdf`](docs/PRESENTATION.pdf) |
-| Public access for all files/links | **[CHECK AFTER UPLOAD]** |
+| GitHub Repository | [HospitalFlow AI](https://github.com/saimanoj22/hospitalflow-ai) |
+| Live 3D Digital Twin | [Launch Application](https://saimanoj22.github.io/hospitalflow-ai/) |
+| Demo Video | [Watch Project Demonstration](https://youtu.be/gJRL3qPQtG0) |
+| System Architecture | [Architecture Diagram (PDF)](docs/ARCHITECTURE.pdf) |
+| Project Presentation | [PowerPoint](docs/PRESENTATION.pptx) · [PDF](docs/PRESENTATION.pdf) |
+| Open-Source License | [MIT License](LICENSE) |
 
-**Important:** The form specifically mandates a **15–20-minute unlisted YouTube video**. A shorter video does not satisfy that stated requirement unless the organizers grant an exception. Follow the [`Demo script`](docs/DEMO_SCRIPT.md) if helpful.
+All source code, simulation models, synthetic datasets, testing scripts, and technical documentation are included in this repository.
+
+
 
 ## Repository map
 
